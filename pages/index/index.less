@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    flex-direction: column;
+
+    .search {
+        .van-search {
+            background-color: #000 !important;
+
+            .van-search__content {
+                border-radius: 30rpx;
+            }
+        }
+    }
+
+    .recommend {
+        background-color: #222;
+        display: flex;
+        color: aliceblue;
+        .item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 180rpx;
+            text-align: center;
+            font-size: 25rpx;
+            view {
+                width: 50%;
+                height: 50%;
+                line-height: 90rpx;
+                background-color: rgb(41, 40, 40);
+                border-radius: 50%;
+                margin-left: 50rpx;
+                margin-top: 15rpx;
+            }
+            text {
+                margin-top: 15rpx;
+                height: 40%;
+            }
+        }
+    }
+}
+
+@font-face {
+    font-family: 'iconfont';
+    /* Project id 2907777 */
+    src: url('//at.alicdn.com/t/font_2907777_oycgnlpuex9.woff2?t=1635771618800') format('woff2'),
+        url('//at.alicdn.com/t/font_2907777_oycgnlpuex9.woff?t=1635771618800') format('woff'),
+        url('//at.alicdn.com/t/font_2907777_oycgnlpuex9.ttf?t=1635771618800') format('truetype');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 18px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-paixingbang:before {
+    content: "\e6c5";
+}
+
+.icon-diantai:before {
+    content: "\e621";
+}
+
+.icon-yinle:before {
+    content: "\e624";
+}
+
+.icon-MV:before {
+    content: "\e62c";
+}

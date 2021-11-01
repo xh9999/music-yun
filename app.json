@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/me/me",
     "pages/player/player",
-    "pages/concer/concer"
+    "pages/concer/concer",
+    "pages/list/list"
   ],
   "window": {
     "backgroundTextStyle": "light",

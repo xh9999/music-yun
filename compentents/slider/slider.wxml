@@ -1,0 +1,6 @@
+<!-- 轮播图 -->
+<swiper class="swiper" indicator-dots="{{true}}" indicator-color="#fff" autoplay="{{true}}" interval="5000" circular="{{true}}">
+    <swiper-item class="swiper-item" wx:for="{{banner}}" wx:for-item="item" wx:key="bannerId">
+        <image src="{{item.pic}}"></image>
+    </swiper-item>
+</swiper>
