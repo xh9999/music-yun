@@ -24,4 +24,8 @@
             <text>热门歌手</text>
         </view>
     </view>
+    <!-- 热门榜单推荐 -->
+    <view class="hot">
+        <view class="title">热门榜单</view>
+    </view>
 </view>
