@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-cell": "../../compentents/cell/index",
+    "van-cell-group": "../../compentents/cell-group/index"
+  }
+  
 }

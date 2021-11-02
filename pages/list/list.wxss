@@ -1,1 +1,42 @@
-/* pages/list/list.wxss */
+.container .title {
+  background-color: #222;
+  text-align: center;
+  color: #fff;
+  padding: 20rpx 0;
+}
+.container .van-cell {
+  background-color: #313131;
+  color: #fff;
+}
+.container .van-cell .van-cell_title {
+  background-color: #222;
+}
+.container .cell {
+  background-color: #000;
+  display: flex;
+}
+.container .cell .icon {
+  height: 100rpx;
+  width: 100rpx;
+  background-color: #000;
+  margin-right: 40rpx;
+}
+.container .cell .icon image {
+  width: 100%;
+  height: 100%;
+}
+.container .cell .content {
+  width: 545rpx;
+}
+.container .cell .content view {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.container .mv {
+  background-color: #000;
+  color: aliceblue;
+}
+.container .mv .img image {
+  width: 100%;
+}

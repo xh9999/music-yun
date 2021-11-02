@@ -18,8 +18,23 @@ function requesturl(url, data) {
 };
 var sliderUrl = "http://121.5.237.135:3000/banner?type=2"; //get请求轮播图
 // 专辑
-var albumUrl="http://121.5.237.135:3000/album/newest";//get请求
+var albumUrl = "http://121.5.237.135:3000/album/newest"; //get请求
+// 获取歌单榜
+var sonList = "http://121.5.237.135:3000/toplist/detail"; //get请求
+// 获取推荐歌单
+var newSong = "http://121.5.237.135:3000/personalized?limit=20"; //get请求
+// 获取mv
+var mvUrl = "http://121.5.237.135:3000/top/mv"; //get请求
+// 获取推荐电台
+var radioUrl = "http://121.5.237.135:3000/program/recommend"; //get请求
+// 获取热门歌手
+var hotUrl = "http://121.5.237.135:3000/top/artists?limit=20 "; //get请求
 module.exports = {
     requesturl: requesturl,
-    sliderUrl: sliderUrl
+    sliderUrl: sliderUrl,
+    sonList: sonList,
+    newSong: newSong,
+    mvUrl:mvUrl,
+    radioUrl:radioUrl,
+    hotUrl:hotUrl
 }

@@ -4,7 +4,8 @@
     "pages/me/me",
     "pages/player/player",
     "pages/concer/concer",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
