@@ -26,7 +26,8 @@ Page({
     offset: 0,
     keyword: "",
     ev: {},
-    aid:""
+    aid: "",
+    prevId: ""
   },
   // 事件处理函数
   bindViewTap() {
@@ -64,13 +65,14 @@ Page({
   },
   onSubimt(event) {
     const toast = Toast.loading({
-      duration: 0, // 持续展示 toast
+      duration: 0,
       forbidClick: true,
       message: '加载中',
       selector: '#van-toast',
     });
-    if(event.detail!=this.data.keyword){
-      this.data.musics=[];
+    if (event.detail != this.data.keyword) {
+      this.data.musics = [];
+      this.data.offset = 0;
     }
     var ev = event;
     var keyword = event.detail;
@@ -96,6 +98,7 @@ Page({
             duration,
             timeFen: getSongsTimeFen(duration),
             timeMiao: addTime(getSongsTimeMiao(duration)),
+            isPlay: false
           });
         });
         this.setData({
@@ -113,19 +116,37 @@ Page({
     });
     this.onSubimt(this.data.ev);
   },
-  onPlay(e){
-    var {aid} = e.currentTarget.dataset;
-    // var url = `http://121.5.237.135:3000/song/url?id=${aid}`
-    this.setData({aid});
+  onPlay(e) {
+    var {
+      aid
+    } = e.currentTarget.dataset;
+    var musics = this.data.musics;
+    var prevId = this.data.prevId;
+    if (aid != prevId) {
+      musics.forEach(item => {
+        if (item.id == aid) {
+          item.isPlay = true;
+        } else {
+          item.isPlay = false;
+        }
+      });
+      this.setData({
+        musics,
+        prevId: aid
+      })
+    } else {
+      musics.forEach(item => {
+        if (item.id == aid) {
+          item.isPlay = !item.isPlay;
+        }
+      });
+      this.setData({
+        musics
+      })
+    };
+    this.setData({
+      aid,
+    });
     console.log(this.data.aid)
-    // http({
-    //   url,
-    //   success: res => {
-    //     var playUrl = res.data.data[0].url;
-    //     this.setData({
-    //       playUrl
-    //     });
-    //   }
-    // });
   }
 })

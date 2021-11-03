@@ -18,14 +18,24 @@
   padding: 0;
   background-color: black;
 }
+.container .userName {
+  color: white;
+}
 .search-list {
   padding: 20rpx;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
 }
 .search-list .item {
+  margin-top: 20rpx;
+  background-color: #c20c0c;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid black;
+  border: 1px solid black;
+  border-radius: 8px;
 }
 .search-list .item .bg {
   width: 150rpx;
@@ -37,8 +47,8 @@
   padding-left: 10rpx;
 }
 .search-list .play {
-  width: 100rpx;
-  height: 100rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 .search-list .left {
   display: flex;

@@ -4,7 +4,7 @@
       <view class="userinfo-avatar" bindtap="bindViewTap">
         <open-data type="userAvatarUrl"></open-data>
       </view>
-      <open-data type="userNickName"></open-data>
+      <open-data type="userNickName" class="userName"></open-data>
     </block>
     <block wx:elif="{{!hasUserInfo}}">
       <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
@@ -36,7 +36,7 @@
       <image 
       class="play"
       data-aid="{{item.id}}"
-       src="/assets/tabs/暂停.png" bindtap = "onPlay"/>
+       src="{{item.isPlay?'/assets/tabs/播放中.png':'/assets/tabs/暂停.png'}}" bindtap = "onPlay"/>
     </view>
   </view>
 </view>
