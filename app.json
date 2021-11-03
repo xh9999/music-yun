@@ -5,7 +5,9 @@
     "pages/player/player",
     "pages/concer/concer",
     "pages/list/list",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/mvplayer/mvplayer",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,4 +1,22 @@
 <view class="container">
+    <!-- 登录 -->
+    <view class="login">
+        <view>
+            <view wx:if="{{stauts}}" class="item1">
+                <view class="img">
+                    <image src="{{iconImg}}"></image>
+                </view>
+                <view class="icon">{{name}}</view>
+            </view>
+            <view wx:else>
+                <view class="left iconfont icon-denglu">
+                    <text class="icon">未登录</text>
+                </view>
+            </view>
+        </view>
+        <view class="right" wx:if="{{stauts}}" bindtap = "outlog">退出登录</view>
+        <view class="right" wx:else bindtap = "golog">立即登录</view>
+    </view>
     <!-- 搜索 -->
     <view class="search">
         <van-search value="{{ value }}" placeholder="请输入搜索关键词" />

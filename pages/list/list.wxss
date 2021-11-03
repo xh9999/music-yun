@@ -37,6 +37,27 @@
   background-color: #000;
   color: aliceblue;
 }
+.container .mv .img {
+  border-radius: 20rpx;
+}
 .container .mv .img image {
+  border: solid 1px #888;
+  border-radius: 30rpx;
   width: 100%;
+}
+.container .mv .mv-cot {
+  padding: 0 30rpx;
+  height: 100rpx;
+}
+.container .mv .mv-cot view {
+  padding-top: 10rpx;
+}
+.container .mv .mv-cot view:first-child {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.container .mv .mv-cot view:last-child {
+  font-size: 24rpx;
 }

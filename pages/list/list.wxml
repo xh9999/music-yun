@@ -22,7 +22,7 @@
     <!-- 推荐歌单 -->
     <view wx:if="{{type=='new'}}">
         <view class="title">推荐歌单</view>
-        <van-cell wx:for="{{content}}" wx:for-item="item" wx:key="id" class="cell">
+        <van-cell wx:for="{{content}}" wx:for-item="item" wx:key="id" class="cell" bindtap = "handleList" data-id="{{item.id}}">
             <view slot="icon" class="icon">
                 <image src="{{item.picUrl}}" lazy-load="false" binderror="" bindload=""></image>
             </view>
@@ -47,13 +47,13 @@
     <view wx:elif="{{type=='mv'}}">
         <!-- cover artistName -->
         <view class="title">热门mv</view>
-        <view wx:for="{{content}}" wx:for-item="item" wx:key="id" class="mv">
+        <view wx:for="{{content}}" wx:for-item="item" wx:key="id" class="mv" data-id="{{item.id}}" bindtap = "click">
             <view class="img">
                 <image src="{{item.cover}}" lazy-load="false" binderror="" bindload=""></image>
             </view>
             <view class="mv-cot">
-                <view>{{item.artistName}}</view>
                 <view>{{item.name}}</view>
+                <view>{{item.artistName}}</view>
             </view>
         </view>
     </view>
@@ -70,3 +70,4 @@
         </van-cell>
     </view>
 </view>
+<van-toast id="van-toast" />

@@ -1,0 +1,18 @@
+<view class="container">
+    <video class="mv" src="{{url}}" show-center-play-btn initial-time="0" play-btn-position="center" object-fit="cover" autoplay="false" loop="false" muted="{{false}}" direction="90"></video>
+    <!-- 相似mv -->
+    <scroll-view scroll-y="{{true}}" class="scroll">
+        <view class="similar">
+            <view class="title">相似mv</view>
+            <van-cell wx:for="{{content}}" wx:for-item="item" wx:key="id" class="cell" bindtap = "handle" data-id="{{item.id}}">
+                <view slot="icon" class="icon">
+                    <image src="{{item.cover}}"></image>
+                </view>
+                <view slot="title" class="content">
+                    <view>{{item.name}}</view>
+                    <view>{{item.artistName}}</view>
+                </view>
+            </van-cell>
+        </view>
+    </scroll-view>
+</view>

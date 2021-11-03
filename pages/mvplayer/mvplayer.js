@@ -1,41 +1,49 @@
 const {
+  mv,
   requesturl,
-  personal
-} = require('../../utils/request')
+  simimv
+} = require("../../utils/request")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    id: null
+    id: null,
+    url:null,
+    content:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // index为1表示推荐歌单为4表示热门歌手
+    var id = options.id;
     this.setData({
-      id: options.id,
-      index: options.index
+      id: id
     });
-    this.getList();
+    this.getMv();
   },
-
-  // 获取对应榜单数据
-  async getList() {
-    if (this.data.index == 1) {
-      const result = await requesturl(personal, {
-        id: this.data.id
-      });
-      console.log(result);
-    }
+  handle(event) {
+    // 相似音乐中的id
+    var uid=event.currentTarget.dataset.id;
+    this.setData({
+      id:uid
+    });
+    // 点击相似mv播放后重新渲染页面的mv
+    this.getMv();
+  },
+  async getMv(){
+    const result=await requesturl(mv,{id:this.data.id});
+    const res=await requesturl(simimv,{mvid:this.data.id});
+    this.setData({
+      url:result.data.url,
+      content:res.mvs
+    });
   },
   onReady: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面显示
    */

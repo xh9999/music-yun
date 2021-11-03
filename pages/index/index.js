@@ -11,12 +11,40 @@ Page({
   data: {
     slider: [],
     value: null,
-    musiclist: null
+    musiclist: null,
+    iconImg: null,
+    stauts: null,
+    name: null
   },
   //options(Object)
   onLoad: function (options) {
     this.getBanner();
     this.getSonList();
+    this.getStauts();
+  },
+  getStauts() {
+    var stauts = wx.getStorageSync("cookieKey");
+    var iconImg = wx.getStorageSync("img");
+    var name = wx.getStorageSync("name");
+    this.setData({
+      stauts: stauts,
+      iconImg: iconImg,
+      name: name
+    });
+  },
+  // 退出登录
+  outlog() {
+    wx.removeStorageSync("cookieKey");
+    wx.removeStorageSync("img");
+    wx.removeStorageSync("name");
+    this.getStauts();
+  },
+  // 登录
+  golog() {
+    wx.navigateTo({
+      url: '/pages/login/login',
+    })
+
   },
   async getBanner() {
     const result = await requesturl(sliderUrl);
@@ -41,32 +69,10 @@ Page({
       url: `/pages/list/list?type=${type}`,
     });
   },
-  onReady: function () {
-
-  },
   onShow: function () {
-
+    this.getStauts();
   },
   onHide: function () {
 
   },
-  onUnload: function () {
-
-  },
-  onPullDownRefresh: function () {
-
-  },
-  onReachBottom: function () {
-
-  },
-  onShareAppMessage: function () {
-
-  },
-  onPageScroll: function () {
-
-  },
-  //item(index,pagePath,text)
-  onTabItemTap: function (item) {
-
-  }
 });

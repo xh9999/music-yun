@@ -5,7 +5,8 @@ const {
   radioUrl,
   hotUrl
 } = require('../../utils/request');
-const app = getApp()
+const app = getApp();
+import Toast from "../../compentents/toast/toast"
 Page({
 
   /**
@@ -13,7 +14,8 @@ Page({
    */
   data: {
     type: "",
-    content: null
+    content: null,
+    limit: 15
   },
 
   /**
@@ -29,91 +31,85 @@ Page({
   },
   // 每日推荐对应的内容
   async getRecommend() {
+    // 每次请求数据之前需要提示加载中
+    Toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+      loadingType: 'spinner',
+      selector: '#van-toast',
+      //这表示这个提示一直都在
+      duration: 0,
+    });
+    // 推荐歌单
     if (this.data.type == 'new') {
       var url = newSong;
-      const result = await requesturl(url);
+      const result = await requesturl(url, {
+        limit: this.data.limit
+      });
+      // 获取到数据后清除轻提示
+      Toast.clear();
       this.setData({
         content: result.result
       });
+      console.log(this.data.content);
     } else if (this.data.type == 'radio') {
       var url = radioUrl;
-      const result = await requesturl(url);
+      const result = await requesturl(url, {
+        limit: this.data.limit
+      });
+      // 获取到数据后清除轻提示
+      Toast.clear();
       this.setData({
         content: result.programs
       });
-      // blurCoverUrl
-      console.log(this.data.content);
     } else if (this.data.type == 'mv') {
       var url = mvUrl;
-      const result = await requesturl(url);
+      const result = await requesturl(url, {
+        limit: this.data.limit
+      });
+      // 获取到数据后清除轻提示
+      Toast.clear();
       this.setData({
         content: result.data
       });
-      console.log(result);
-      console.log(this.data.content);
     } else {
       var url = hotUrl;
-      const result = await requesturl(url);
+      const result = await requesturl(url, {
+        limit: this.data.limit
+      });
+      // 获取到数据后清除轻提示
+      Toast.clear();
       console.log(result);
       this.setData({
         content: result.artists
       });
-      console.log(this.data.content);
     }
+  },
+  handleList(event) {
+    var tid = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/detail/detail?id=${tid}&index=1`,
+    });
   },
   // 点击跳转到detail页面
   handle(event) {
-    var id = event.currentTarget.dataset.id;
+    var sid = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `/pages/detail/detail?id=${id}`,
+      url: `/pages/detail/detail?id=${sid}&index=4`,
     });
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  // 获取mv的地址
+  click(event) {
+    var id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/mvplayer/mvplayer?id=${id}`,
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
-
+    // 当到底的时候继续加载
+    this.setData({
+      limit: this.data.limit + 10,
+    });
+    this.getRecommend();
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

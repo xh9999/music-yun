@@ -33,6 +33,7 @@
 
         .content {
             width: 545rpx;
+
             view {
                 white-space: nowrap;
                 overflow: hidden;
@@ -40,12 +41,37 @@
             }
         }
     }
+
     .mv {
         background-color: #000;
         color: aliceblue;
+
         .img {
+            border-radius: 20rpx;
+
             image {
+                border: solid 1px #888;
+                border-radius: 30rpx;
                 width: 100%;
+            }
+        }
+
+        .mv-cot {
+            padding: 0 30rpx;
+            height: 100rpx;
+
+            view {
+                padding-top: 10rpx;
+                &:first-child {
+                    width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                &:last-child {
+                    font-size: 24rpx;
+                }
             }
         }
     }
