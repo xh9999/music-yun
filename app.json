@@ -1,40 +1,40 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/me/me",
-    "pages/player/player",
-    "pages/concer/concer"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "./assets/tabs/home.png",
-        "selectedIconPath": "./assets/tabs/home-active.png"
-      },
-      {
-        "pagePath": "pages/player/player",
-        "text": "正在播放"
-      },
-      {
-        "pagePath": "pages/concer/concer",
-        "text": "歌手"
-      },
-      {
-        "pagePath": "pages/me/me",
-        "text": "我",
-        "iconPath": "./assets/tabs/profile.png",
-        "selectedIconPath": "./assets/tabs/profile-active.png"
-      }
-    ]
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/index/index",
+        "pages/me/me",
+        "pages/player/player",
+        "pages/concer/concer"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Weixin",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "./assets/tabs/home.png",
+                "selectedIconPath": "./assets/tabs/home-active.png"
+            },
+            {
+                "pagePath": "pages/player/player",
+                "text": "正在播放"
+            },
+            {
+                "pagePath": "pages/concer/concer",
+                "text": "歌手"
+            },
+            {
+                "pagePath": "pages/me/me",
+                "text": "搜索",
+                "iconPath": "./assets/tabs/profile.png",
+                "selectedIconPath": "./assets/tabs/profile-active.png"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
 }

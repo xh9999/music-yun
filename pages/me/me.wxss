@@ -1,1 +1,56 @@
-/* pages/me/me.wxss */
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.usermotto {
+  margin-top: 200px;
+}
+.container {
+  padding: 0;
+  background-color: black;
+}
+.search-list {
+  padding: 20rpx;
+}
+.search-list .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+.search-list .item .bg {
+  width: 150rpx;
+  height: 150rpx;
+}
+.search-list .songs-detail {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10rpx;
+}
+.search-list .play {
+  width: 100rpx;
+  height: 100rpx;
+}
+.search-list .left {
+  display: flex;
+  align-items: center;
+}
+.search-list .left .text {
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+}
+.search-list .right {
+  display: flex;
+  align-items: center;
+}
