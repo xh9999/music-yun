@@ -6,12 +6,12 @@ import {
   getSongsTimeFen,
   getSongsTimeMiao,
   handleStr,
-  addTime
+  addTime,
+  arrQc
 } from "../../utils/search/utils";
 const app = getApp();
 const {
-  http,
-  getMeHttp
+  http
 } = require("../../utils/search/http");
 
 Page({
@@ -24,12 +24,12 @@ Page({
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
     musics: [],
     offset: 0,
-    keyword: "",
+    keyword: null,
     ev: {},
     aid: "",
-    prevId: ""
+    prevId: "",
+    bid: ""
   },
-  // 事件处理函数
   bindViewTap() {
     wx.navigateTo({
       url: '../logs/logs'
@@ -43,9 +43,8 @@ Page({
     };
   },
   getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      desc: '展示用户信息',
       success: (res) => {
         console.log(res)
         this.setData({
@@ -56,7 +55,6 @@ Page({
     })
   },
   getUserInfo(e) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
     console.log(e)
     this.setData({
       userInfo: e.detail.userInfo,
@@ -73,10 +71,14 @@ Page({
     if (event.detail != this.data.keyword) {
       this.data.musics = [];
       this.data.offset = 0;
+    } else if (event.detail = this.data.keyword) {
+      this.setData({
+        offset: ++this.data.offset
+      });
     }
     var ev = event;
     var keyword = event.detail;
-    var url = `http://121.5.237.135:3000/search?keywords=${keyword}&offset=${this.data.offset}`;
+    var url = `http://121.5.237.135:3000/search?keywords=${keyword}&limit=20&offset=${this.data.offset*20}`;
     http({
       url,
       success: res => {
@@ -89,11 +91,13 @@ Page({
             artists,
             duration,
             timeFen,
-            timeMiao
+            timeMiao,
+            mvid
           } = item;
           musics.push({
             name: handleStr(name),
             id,
+            mvid,
             author: handleStr(artists[0]),
             duration,
             timeFen: getSongsTimeFen(duration),
@@ -101,19 +105,21 @@ Page({
             isPlay: false
           });
         });
+        var arr = [...this.data.musics, ...musics];
+        var musicArr = arrQc(arr,"id")
         this.setData({
-          musics: [...this.data.musics, ...musics],
+          musics: musicArr,
           keyword,
           ev
         });
-      }
+      },
+      fail: res => {
+        console.log("err")
+      },
     });
     Toast.clear();
   },
   onReachBottom: function () {
-    this.setData({
-      offset: ++this.data.offset,
-    });
     this.onSubimt(this.data.ev);
   },
   onPlay(e) {
@@ -148,5 +154,23 @@ Page({
       aid,
     });
     console.log(this.data.aid)
+  },
+  onCancel(e) {
+    console.log("取消搜索")
+    var musics = [];
+    var offset = 0;
+    this.setData({
+      musics,
+      offset
+    })
+  },
+  onGetMvid(e) {
+    var {
+      bid
+    } = e.currentTarget.dataset;
+    this.setData({
+      bid
+    });
+    console.log(bid)
   }
 })

@@ -18,9 +18,9 @@
   </view>
 </view>
 
-<van-search value="{{ value }}" shape="round" background="black" placeholder="请输入搜索关键词" bind:search="onSubimt" />
+<van-search value="{{ value }}" shape="round" background="black" placeholder="请输入搜索关键词" bind:search="onSubimt" bind:clear="onCancel" />
 <view class="search-list">
-  <view class="item" wx:for="{{musics}}" wx:key="id">
+  <view class="item" wx:for="{{musics}}" wx:key="index">
     <view class="left">
       <view class="text">
         <text>{{index+1}}</text>
@@ -32,11 +32,12 @@
       </view>
     </view>
     <view class="right">
-      <text>{{item.timeFen}}:{{item.timeMiao}}</text>
+      <view wx:if="{{item.mvid}}" class="mv"><text></text><image class="mvplay" src="{{item.mvid?'/assets/tabs/mv.png':''}}" data-bid="{{item.mvid}}" bindtap = "onGetMvid" /></view>
+      <text>time:{{item.timeFen}}:{{item.timeMiao}}</text>
       <image 
       class="play"
       data-aid="{{item.id}}"
-       src="{{item.isPlay?'/assets/tabs/播放中.png':'/assets/tabs/暂停.png'}}" bindtap = "onPlay"/>
+       src="{{item.isPlay?'/assets/tabs/start.png':'/assets/tabs/stop.png'}}" bindtap = "onPlay"/>
     </view>
   </view>
 </view>

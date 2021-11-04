@@ -11,8 +11,8 @@ let getSongsTimeFen = function (time) {
 };
 
 function handleStr(str) {
-    if (str.length > 20) {
-        str = str.slice(0, 20) + "..."
+    if (str.length > 16) {
+        str = str.slice(0, 16) + "..."
     }
     return str;
 };
@@ -21,11 +21,19 @@ function addTime(time) {
         time = "0"+time
     }
     return time;
-}
+};
+function arrQc(arr, name) {
+    var hash = {};
+    return arr.reduce(function (item, next) {
+      hash[next[name]] ? '' : hash[next[name]] = true && item.push(next);
+      return item;
+    }, []);
+  }
 
 module.exports = {
     getSongsTimeMiao,
     getSongsTimeFen,
     handleStr,
-    addTime
+    addTime,
+    arrQc
 }
