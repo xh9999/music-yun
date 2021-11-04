@@ -11,9 +11,10 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#000"
   },
   "tabBar": {
     "list": [
@@ -21,21 +22,25 @@
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "./assets/tabs/home.png",
-        "selectedIconPath": "./assets/tabs/home-active.png"
+        "selectedIconPath": "./assets/tabs/home_active.png"
       },
       {
         "pagePath": "pages/player/player",
+        "iconPath": "./assets/tabs/play.png",
+        "selectedIconPath": "./assets/tabs/play_active.png",
         "text": "正在播放"
       },
       {
         "pagePath": "pages/concer/concer",
+        "iconPath": "./assets/tabs/singer.png",
+        "selectedIconPath": "./assets/tabs/singer_active.png",
         "text": "歌手"
       },
       {
         "pagePath": "pages/me/me",
         "text": "我",
-        "iconPath": "./assets/tabs/profile.png",
-        "selectedIconPath": "./assets/tabs/profile-active.png"
+        "iconPath": "./assets/tabs/me.png",
+        "selectedIconPath": "./assets/tabs/me_active.png"
       }
     ]
   },

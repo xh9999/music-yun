@@ -1,7 +1,8 @@
 const {
   mv,
   requesturl,
-  simimv
+  simimv,
+  mvcomment
 } = require("../../utils/request")
 Page({
 
@@ -10,8 +11,9 @@ Page({
    */
   data: {
     id: null,
-    url:null,
-    content:null
+    url: null,
+    content: null,
+    danmuList: []
   },
 
   /**
@@ -24,25 +26,48 @@ Page({
     });
     this.getMv();
   },
+  async getComment() {
+    var comment = await requesturl(mvcomment, {
+      id: this.data.id
+    });
+    var array = [];
+    var obj = {};
+    var time = 1;
+    comment.comments.forEach((item) => {
+      obj.text = item.content;
+      obj.color = '#ccc';
+      obj.time = time;
+      array.push(obj);
+      obj = {};
+      time+=2;
+    });
+    this.setData({
+      danmuList: array
+    })
+  },
   handle(event) {
     // 相似音乐中的id
-    var uid=event.currentTarget.dataset.id;
+    var uid = event.currentTarget.dataset.id;
     this.setData({
-      id:uid
+      id: uid
     });
     // 点击相似mv播放后重新渲染页面的mv
     this.getMv();
   },
-  async getMv(){
-    const result=await requesturl(mv,{id:this.data.id});
-    const res=await requesturl(simimv,{mvid:this.data.id});
+  async getMv() {
+    const result = await requesturl(mv, {
+      id: this.data.id
+    });
+    const res = await requesturl(simimv, {
+      mvid: this.data.id
+    });
     this.setData({
-      url:result.data.url,
-      content:res.mvs
+      url: result.data.url,
+      content: res.mvs
     });
   },
   onReady: function () {
-
+    this.getComment();
   },
   /**
    * 生命周期函数--监听页面显示

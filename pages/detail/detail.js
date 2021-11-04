@@ -1,36 +1,60 @@
 const {
   requesturl,
   personal
-} = require('../../utils/request')
+} = require('../../utils/request');
+const app = getApp();
+import Toast from "../../compentents/toast/toast";
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    id: null
+    id: null,
+    content: null,
+    imgUrl: null,
+    tag: null,
+    uid: null,
+    limit: 15
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // index为1表示推荐歌单为4表示热门歌手
     this.setData({
       id: options.id,
-      index: options.index
+      tag: options.tag
     });
+    console.log(this.data.tag);
+    console.log(this.data.id);
     this.getList();
   },
 
   // 获取对应榜单数据
   async getList() {
-    if (this.data.index == 1) {
-      const result = await requesturl(personal, {
-        id: this.data.id
-      });
-      console.log(result);
-    }
+    // 每次请求数据之前需要提示加载中
+    Toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+      loadingType: 'spinner',
+      selector: '#van-toast',
+      //这表示这个提示一直都在
+      duration: 0,
+    });
+    var result = await requesturl(personal, {
+      id: this.data.id
+    });
+    // 获取到数据后清除轻提示
+    Toast.clear();
+    this.setData({
+      content: result.playlist.tracks,
+      imgUrl: result.playlist.coverImgUrl,
+    });
+  },
+  player(event) {
+    var id = event.currentTarget.dataset.id;
+    app.globalData.id = id;
+    // 跳转到跳转tabBar页面不能传递参数
+    wx.switchTab({
+      url: `/pages/player/player`,
+    })
   },
   onReady: function () {
 
@@ -70,7 +94,6 @@ Page({
   onReachBottom: function () {
 
   },
-
   /**
    * 用户点击右上角分享
    */

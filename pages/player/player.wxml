@@ -1,2 +1,8 @@
-<!--pages/player/player.wxml-->
-<text>pages/player/player.wxml</text>
+<image src="{{musicImg}}">
+    
+</image>
+<audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{url}}" id="myAudio" controls="{{true}}" loop></audio>
+<button type="primary" bindtap="audioPlay">播放</button>
+<button type="primary" bindtap="audioPause">暂停</button>
+<button type="primary" bindtap="audio14">设置当前播放时间为14秒</button>
+<button type="primary" bindtap="audioStart">回到开头</button>

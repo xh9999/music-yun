@@ -6,3 +6,4 @@
     <button type="primary" formType="submit">登录</button>
 </form>
 <view class="mask"></view>
+<van-notify id="van-notify" />

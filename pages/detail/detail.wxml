@@ -1,1 +1,22 @@
-<text>pages/detail/detail.wxml</text>
+<view class="container">
+    <view class="titleImg">
+        <image class="img" src="{{imgUrl}}"></image>
+    </view>
+    <scroll-view scroll-y="{{true}}" class="scroll">
+        <view class="contents">
+            <van-cell wx:for="{{content}}" wx:for-item="item" wx:key="id" class="cell" bindtap="player" data-id="{{item.id}}">
+                <view slot="icon" class="icon">
+                    <image src="{{item.al.picUrl}}" lazy-load="false" binderror="" bindload=""></image>
+                </view>
+                <view slot="title" class="content">
+                    <view class="one">{{item.name}}</view>
+                    <view class="one">{{item.ar[0].name}}</view>
+                    <view wx:if="{{item.mvid!=0}}" class="bofa iconfont icon-mvbofang" bindtap="clickmv" data-id="{{item.mvid}}"></view>
+                </view>
+            </van-cell>
+        </view>
+    </scroll-view>
+    <!-- 热门榜单对应的内容 -->
+</view>
+<!-- 轻提示 -->
+<van-toast id="van-toast" />

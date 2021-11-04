@@ -6,7 +6,7 @@ const {
   hotUrl
 } = require('../../utils/request');
 const app = getApp();
-import Toast from "../../compentents/toast/toast"
+import Toast from "../../compentents/toast/toast";
 Page({
 
   /**
@@ -40,18 +40,17 @@ Page({
       //这表示这个提示一直都在
       duration: 0,
     });
-    // 推荐歌单
+    // 每日推荐
     if (this.data.type == 'new') {
       var url = newSong;
-      const result = await requesturl(url, {
-        limit: this.data.limit
-      });
+      const result = await requesturl(url);
       // 获取到数据后清除轻提示
       Toast.clear();
       this.setData({
-        content: result.result
+        content: result.recommend
       });
-      console.log(this.data.content);
+      console.log(result);
+      // 推荐电台
     } else if (this.data.type == 'radio') {
       var url = radioUrl;
       const result = await requesturl(url, {
@@ -62,6 +61,7 @@ Page({
       this.setData({
         content: result.programs
       });
+      // 推荐mv
     } else if (this.data.type == 'mv') {
       var url = mvUrl;
       const result = await requesturl(url, {
@@ -72,6 +72,7 @@ Page({
       this.setData({
         content: result.data
       });
+      // 推荐歌单
     } else {
       var url = hotUrl;
       const result = await requesturl(url, {
@@ -79,9 +80,8 @@ Page({
       });
       // 获取到数据后清除轻提示
       Toast.clear();
-      console.log(result);
       this.setData({
-        content: result.artists
+        content: result.recommend
       });
     }
   },
@@ -91,15 +91,31 @@ Page({
       url: `/pages/detail/detail?id=${tid}&index=1`,
     });
   },
+  // 点击跳转到播放页面
+  player(event) {
+    var id = event.currentTarget.dataset.id;
+    app.globalData.id = id;
+    // 跳转到跳转tabBar页面不能传递参数
+    wx.switchTab({
+      url: `/pages/player/player`,
+    })
+  },
   // 点击跳转到detail页面
   handle(event) {
     var sid = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `/pages/detail/detail?id=${sid}&index=4`,
+      url: `/pages/detail/detail?id=${sid}&tag=one`,
     });
   },
   // 获取mv的地址
   click(event) {
+    var id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/mvplayer/mvplayer?id=${id}`,
+    });
+  },
+  // 点击播放对应的mv
+  clickmv(event) {
     var id = event.currentTarget.dataset.id;
     wx.navigateTo({
       url: `/pages/mvplayer/mvplayer?id=${id}`,

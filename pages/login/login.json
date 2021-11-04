@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "van-field": "../../compentents/field/index"
+    "van-field": "../../compentents/field/index",
+    "van-notify": "../../compentents/notify/index"
   }
 }

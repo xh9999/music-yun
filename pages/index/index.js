@@ -1,5 +1,4 @@
-// index.js
-// 获取应用实例
+import Notify from '../../compentents/notify/notify';
 const app = getApp()
 const {
   requesturl,
@@ -22,6 +21,7 @@ Page({
     this.getSonList();
     this.getStauts();
   },
+  // 获取登录状态
   getStauts() {
     var stauts = wx.getStorageSync("cookieKey");
     var iconImg = wx.getStorageSync("img");
@@ -38,14 +38,34 @@ Page({
     wx.removeStorageSync("img");
     wx.removeStorageSync("name");
     this.getStauts();
+    console.log(this.data.iconImg);
+    wx.request({
+      //请求地址
+      url: 'http://121.5.237.135:3000/logout',
+      //请求方式
+      method: "get",
+      //请求返回结果的数据类型
+      dataType: "json",
+      //请求回调
+      success(res) {
+      },
+      // 请求失败执行的回调函数
+      fail: function (res) {
+        console.log(res);
+      },
+      // 接口调用结束的回调函数（调用成功、失败都会执行）
+      complete: function (res) {},
+    });
   },
   // 登录
   golog() {
     wx.navigateTo({
       url: '/pages/login/login',
-    })
+    });
+    console.log(this.data.iconImg);
 
   },
+  // banner部分
   async getBanner() {
     const result = await requesturl(sliderUrl);
     this.setData({
@@ -65,8 +85,30 @@ Page({
   // 点击每日推荐出现对应的内容
   click: function (event) {
     var type = event.currentTarget.dataset.type;
+    if (type == "new" || type == "songer") {
+      // 如果登录直接前往list页面，否则需要登录
+      if (wx.getStorageSync("cookieKey")) {
+        wx.navigateTo({
+          url: `/pages/list/list?type=${type}`,
+        });
+      } else {
+        Notify({
+          type: 'primary',
+          message: '请先登录',
+          duration: 1000
+        });
+      }
+    } else {
+      wx.navigateTo({
+        url: `/pages/list/list?type=${type}`,
+      });
+    }
+  },
+  //热门榜单事件
+  gettop(event){
+    var id = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `/pages/list/list?type=${type}`,
+      url: `/pages/detail/detail?id=${id}&tag=two`,
     });
   },
   onShow: function () {

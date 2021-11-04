@@ -1,5 +1,5 @@
 <view class="container">
-    <video class="mv" src="{{url}}" show-center-play-btn initial-time="0" play-btn-position="center" object-fit="cover" autoplay="false" loop="false" muted="{{false}}" direction="90"></video>
+    <video class="mv" src="{{url}}" danmu-list="{{danmuList}}" show-center-play-btn danmu-btn="{{true}}" enable-danmu="{{true}}" initial-time="0" play-btn-position="center" object-fit="cover" autoplay="{{true}}" loop="false" muted="{{false}}" direction="90"></video>
     <!-- 相似mv -->
     <scroll-view scroll-y="{{true}}" class="scroll">
         <view class="similar">

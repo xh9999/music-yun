@@ -27,11 +27,20 @@
 }
 .container .cell .content {
   width: 545rpx;
+  position: relative;
 }
 .container .cell .content view {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.container .cell .content .bofa {
+  position: absolute;
+  right: 10rpx;
+  top: 25rpx;
+}
+.container .cell .content .one {
+  width: 80%;
 }
 .container .mv {
   background-color: #000;
@@ -60,4 +69,19 @@
 }
 .container .mv .mv-cot view:last-child {
   font-size: 24rpx;
+}
+@font-face {
+  font-family: 'iconfont';
+  /* Project id 2907777 */
+  src: url('//at.alicdn.com/t/font_2907777_p4gglufu1ij.woff2?t=1635993194291') format('woff2'), url('//at.alicdn.com/t/font_2907777_p4gglufu1ij.woff?t=1635993194291') format('woff'), url('//at.alicdn.com/t/font_2907777_p4gglufu1ij.ttf?t=1635993194291') format('truetype');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-mvbofang:after {
+  content: "\e79b";
 }

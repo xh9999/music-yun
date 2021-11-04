@@ -1,40 +1,22 @@
-<wxs module="dateMoudle">
-    var times= function(value) {
-     var time = getDate(value);
-    var year = time.getFullYear();
-    var month = time.getMonth() + 1;
-    var date = time.getDate();
-    var hour = time.getHours();
-    var minute = time.getMinutes();
-    var second = time.getSeconds();
-    month = month < 10 ? "0" + month : month;
-    date = date < 10 ? "0" + date : date;
-    hour = hour < 10 ? "0" + hour : hour;
-    minute = minute < 10 ? "0" + minute : minute;
-    second = second < 10 ? "0" + second : second;
-    return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
-    }
-    module.exports= {
-        times:times
-    }
-</wxs>
 <view class="container">
     <!-- 推荐歌单 -->
     <view wx:if="{{type=='new'}}">
-        <view class="title">推荐歌单</view>
-        <van-cell wx:for="{{content}}" wx:for-item="item" wx:key="id" class="cell" bindtap = "handleList" data-id="{{item.id}}">
+        <view class="title">每日推荐</view>
+        <van-cell wx:for="{{content}}" wx:for-item="item" wx:key="id" class="cell" bindtap="player" data-id="{{item.id}}">
             <view slot="icon" class="icon">
-                <image src="{{item.picUrl}}" lazy-load="false" binderror="" bindload=""></image>
+                <image src="{{item.album.blurPicUrl}}" lazy-load="false" binderror="" bindload=""></image>
             </view>
             <view slot="title" class="content">
-                <view>{{item.name}}</view>
-                <view>更新时间：{{dateMoudle.times(item.trackNumberUpdateTime)}}</view>
+                <view class="one">{{item.name}}</view>
+                <view  class="one">{{item.artists[0].name}}</view>
+
+                <view wx:if="{{item.mvid!=0}}" class="bofa iconfont icon-mvbofang" catchtap = "clickmv" data-id="{{item.mvid}}"></view>
             </view>
         </van-cell>
     </view>
     <view wx:elif="{{type=='radio'}}">
         <view class="title">推荐电台</view>
-        <van-cell wx:for="{{content}}" wx:for-item="item" wx:key="id" class="cell">
+        <van-cell wx:for="{{content}}" wx:for-item="item" wx:key="id" class="cell"  bindtap="player" data-id="{{item.mainSong.id}}">
             <view slot="icon" class="icon">
                 <image src="{{item.coverUrl}}" lazy-load="false" binderror="" bindload=""></image>
             </view>
@@ -47,7 +29,7 @@
     <view wx:elif="{{type=='mv'}}">
         <!-- cover artistName -->
         <view class="title">热门mv</view>
-        <view wx:for="{{content}}" wx:for-item="item" wx:key="id" class="mv" data-id="{{item.id}}" bindtap = "click">
+        <view wx:for="{{content}}" wx:for-item="item" wx:key="id" class="mv" data-id="{{item.id}}" bindtap="click">
             <view class="img">
                 <image src="{{item.cover}}" lazy-load="false" binderror="" bindload=""></image>
             </view>
@@ -58,14 +40,14 @@
         </view>
     </view>
     <view wx:else>
-        <view class="title">热门歌手</view>
+        <view class="title">推荐歌单</view>
         <van-cell wx:for="{{content}}" wx:for-item="item" wx:key="id" class="cell" bindtap="handle" data-id="{{item.id}}">
             <view slot="icon" class="icon">
                 <image src="{{item.picUrl}}" lazy-load="false" binderror="" bindload=""></image>
             </view>
             <view slot="title" class="content">
-                <view>{{item.alias[0]}}</view>
                 <view>{{item.name}}</view>
+                <view>{{item.copywriter}}</view>
             </view>
         </van-cell>
     </view>

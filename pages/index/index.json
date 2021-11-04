@@ -3,7 +3,8 @@
     "slider": "../../compentents/slider/slider",
     "van-search": "../../compentents/search/index",
     "van-grid": "../../compentents/grid/index",
-    "van-grid-item": "../../compentents/grid-item/index"
+    "van-grid-item": "../../compentents/grid-item/index",
+    "van-notify": "../../compentents/notify/index"
   },
   "navigationBarBackgroundColor": "#000",
   "navigationBarTitleText": "首页",

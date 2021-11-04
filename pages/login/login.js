@@ -1,4 +1,4 @@
-// pages/login/login.js
+import Notify from '../../compentents/notify/notify';
 Page({
   data: {
 
@@ -11,7 +11,7 @@ Page({
     var value = e.detail.value;
     var phone = value.phone.toString();
     var password = value.password.toString();
-    var that=this
+    var that = this
     wx.request({
       //请求地址
       url: 'http://121.5.237.135:3000/login/cellphone',
@@ -36,11 +36,30 @@ Page({
           cookieArr.push(item.split(";")[0]);
         });
         cookieStr = cookieArr.join(";");
-        wx.setStorageSync('cookieKey', cookieStr);
-        wx.setStorageSync('img', res.data.profile.avatarUrl);
-        wx.setStorageSync('name', res.data.profile.nickname);
-        // 跳转到首页
-        that.click();
+        // 当状态码为200说明登录成功
+        if (res.data.code == 200) {
+          wx.removeStorageSync("cookieKey");
+          wx.removeStorageSync("img");
+          wx.removeStorageSync("name");
+          wx.setStorageSync('cookieKey', cookieStr);
+          wx.setStorageSync('img', res.data.profile.avatarUrl);
+          wx.setStorageSync('name', res.data.profile.nickname);
+          // 跳转到首页
+          Notify({
+            type: 'success',
+            message: "登录成功",
+            duration: 1000,
+            onClose: function () {
+              that.click();
+            }
+          });
+        } else {
+          var message = res.data.message
+          Notify({
+            type: 'warning',
+            message: message
+          });
+        }
       },
       // 请求失败执行的回调函数
       fail: function (res) {
@@ -55,17 +74,5 @@ Page({
     wx.switchTab({
       url: '/pages/index/index',
     })
-  },
-  getmv() {
-    wx.request({
-      url: "http://121.5.237.135:3000/recommend/songs",
-      method: "get",
-      header: {
-        'Cookie': wx.getStorageSync("cookieKey")
-      },
-      success: (res) => {
-        console.log(res);
-      },
-    });
   },
 })
