@@ -32,8 +32,10 @@ export function requestGet(url, data) {
 }
 
 
-export var SongDataURL = "http://localhost:3000/song/detail?ids=33894312" //GET请求
+export var SongDataURL = "http://121.5.237.135:3000/song/detail?ids=" //GET请求
 
-export var SongURL = "http://localhost:3000/song/url?id=33894312"
+export var SongURL = "http://121.5.237.135:3000/song/url?id="
 
-export var LyricURL = "http://localhost:3000/lyric?id=33894312"
+export var LyricURL = "http://121.5.237.135:3000/lyric?id="
+
+export var listURL = "http://121.5.237.135:3000/playlist/detail?id=19723756"
