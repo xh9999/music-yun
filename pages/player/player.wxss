@@ -260,6 +260,11 @@
   font-size: 12px;
   color: #fff;
 }
+.player .content-wrapper .play-content .playlist-wrapper .item1 {
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+}
 .player .content-wrapper .play-content .close-playlist {
   height: 100rpx;
   width: 100%;

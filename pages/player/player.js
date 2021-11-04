@@ -29,7 +29,6 @@ Page({
             this.getSongURL(audioid);
             this.getLyricURL(audioid);
         }
-        this.getListData()
     },
     play: function(audioid) {
         const audioId = audioid;
@@ -39,6 +38,7 @@ Page({
             innerAudioContext: innerAudioContext,
             isPlay: true,
         })
+        this.getListData()
     },
     // 获取歌曲信息
     async getSongData(id) {
@@ -62,8 +62,8 @@ Page({
         const showLyric = this.formatLyric(result.lrc.lyric);
     },
     // 获取歌单
-    async getListData() {
-        const result = await requestGet(listURL)
+    async getListData(id) {
+        const result = await requestGet(listURL + id)
         this.setData({
             songlist: result.playlist.tracks
         })
@@ -198,9 +198,9 @@ Page({
     },
     // 打开播放列表
     openList: function() {
-        if (!this.data.songlist.length) {
-            return
-        }
+        // if (!this.data.songlist.length) {
+        //     return
+        // }
         // console.log(this.data);
         this.setData({
             translateCls: 'uptranslate'

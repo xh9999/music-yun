@@ -38,4 +38,4 @@ export var SongURL = "http://121.5.237.135:3000/song/url?id="
 
 export var LyricURL = "http://121.5.237.135:3000/lyric?id="
 
-export var listURL = "http://121.5.237.135:3000/playlist/detail?id=19723756"
+export var listURL = "http://121.5.237.135:3000/playlist/detail?id="
