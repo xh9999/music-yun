@@ -1,3 +1,13 @@
 {
-  "usingComponents": {}
+ 
+  "usingComponents": {
+    "van-grid": "../../components/vant/grid/index",
+    "van-grid-item": "../../components/vant/grid-item/index",
+    "van-cell": "../../components/vant/cell/index",
+    "van-cell-group": "../../components/vant/cell-group/index",
+    "van-button": "../../components/vant/button/index"
+  },
+  "navigationBarTitleText": "歌手",
+  "navigationBarBackgroundColor": "#000",
+  "navigationBarTextStyle":"white"
 }

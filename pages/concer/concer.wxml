@@ -1,2 +1,10 @@
-<!--pages/concer/concer.wxml-->
-<text>pages/concer/concer.wxml</text>
+<view  class="box">
+ <van-grid column-num="5" border="{{false}}">
+  <van-grid-item class="item active" wx:for="{{tabs}}"  wx:for-item="item" wx:key="id" text="{{item.name}}" bindtap = "tabsSelect"  data-area="{{item.area}}" />
+  <van-grid-item class="item active" wx:for="{{sex}}"  wx:for-item="item" wx:key="id" text="{{item.name}}" bindtap = "sexSelect" data-type="{{item.type}}"/>
+</van-grid> 
+<van-cell-group inset="true" border="{{false}}" > 
+  <van-cell class="singer" wx:for="{{concerList}}" wx:for-item="item" wx:key="id" title="{{item.name}}" icon="{{item.picUrl}}" url="{{'../singer/singer?singerid='+item.id}}" border="{{false}}">
+  </van-cell>
+</van-cell-group>
+</view>

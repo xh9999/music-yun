@@ -1,66 +1,85 @@
-// pages/concer/concer.js
+const app =  getApp();
+import {requestGet,singerURL} from "../../utils/request" 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    concerList:[],
+    tabs:[
+      {
+        id:"0",
+        name:"华语",
+        area:"area=7",
+        open:false
+      },
+      {
+       id:"1",
+       name:"欧美",
+       area:"area=96",
+       open:false
+      },
+      {
+        id:"2",
+        name:"日本",
+        area:"area=8",
+        open:false 
+       },
+       {
+        id:"3",
+        name:"韩国",
+        area:"area=16",
+        open:false
+       },
+       {
+        id:"4",
+        name:"其他",
+        area:"area=0",
+        open:false
+       }
+    ],
+    sex:[
+      {
+        id:"5",
+        name:"男",
+        type:"type=1",
+        open:false
+       },
+       {
+        id:"6",
+        name:"女",
+        type:"type=2",
+        open:false
+       }, 
+       {
+        id:"7",
+        name:"乐队",
+        type:"type=3",
+        open:false
+       }
+    ],
+    area:'',
+    type:''
+  },
+  onLoad: function () {
+    this.getSingerData()
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  async getSingerData(area){
+     const result = await requestGet(singerURL + area)
+     this.setData({
+      concerList:result.artists
+     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  tabsSelect(e){
+    const areaId = e.currentTarget.dataset;
+    this.setData({
+      area:areaId.area
+    })
+    this.getSingerData(this.data.area)
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  sexSelect(e){
+    const typeId = e.currentTarget.dataset;
+    this.setData({
+      type:typeId.type
+    })
+    this.getSingerData(this.data.type)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

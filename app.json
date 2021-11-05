@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/me/me",
     "pages/player/player",
-    "pages/concer/concer"
+    "pages/concer/concer",
+    "pages/singer/singer"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,6 +26,8 @@
       },
       {
         "pagePath": "pages/concer/concer",
+        "iconPath": "./assets/tabs/concer.png",
+        "selectedIconPath": "./assets/tabs/concer2.png",
         "text": "歌手"
       },
       {

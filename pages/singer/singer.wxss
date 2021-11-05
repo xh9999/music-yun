@@ -1,0 +1,13 @@
+/* pages/singer/singer.wxss */
+view
+{
+    color: white;
+}
+.van-cell
+{
+    background-color: black !important;
+}
+.box
+{
+    background-color: black;
+}
