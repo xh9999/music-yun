@@ -7,7 +7,7 @@
     "van-cell-group": "../../components/vant/cell-group/index",
     "van-button": "../../components/vant/button/index"
   },
-  "navigationBarTitleText": "歌手",
+  "navigationBarTitleText": "热门歌手",
   "navigationBarBackgroundColor": "#000",
   "navigationBarTextStyle":"white"
 }

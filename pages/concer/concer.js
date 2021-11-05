@@ -63,7 +63,7 @@ Page({
   },
 
   async getSingerData(area){
-     const result = await requestGet(singerURL + area)
+     const result = await requestGet(singerURL + area+ "&initial=b")
      this.setData({
       concerList:result.artists
      })

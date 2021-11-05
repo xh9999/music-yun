@@ -31,7 +31,7 @@ export function requestGet(url, data) {
     });
   }
   
-  
+
   export const singerURL = "http://121.5.237.135:3000/artist/list?"                //GET请求
 
   
