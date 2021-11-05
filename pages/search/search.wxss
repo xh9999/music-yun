@@ -49,6 +49,7 @@
 .search-list .right .mv {
   display: flex;
   align-items: center;
+  margin-right: 20rpx;
 }
 .search-list .right .mv .mvplay {
   width: 40rpx;
