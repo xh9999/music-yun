@@ -1,4 +1,4 @@
-import Notify from '../../compentents/notify/notify';
+import Notify from '../../compentents/vant/notify/notify';
 Page({
   data: {
 

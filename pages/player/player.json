@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "van-search": "../../compentents/search/index"
+    "van-search": "../../compentents/vant/search/index"
   }
 }

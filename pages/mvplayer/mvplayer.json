@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "van-cell": "../../compentents/cell/index",
-    "van-cell-group": "../../compentents/cell-group/index"
+    "van-cell": "../../compentents/vant/cell/index",
+    "van-cell-group": "../../compentents/vant/cell-group/index"
   },
   "backgroundColor": "#000",
   "navigationBarTitleText": "mv",

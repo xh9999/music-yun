@@ -1,8 +1,8 @@
 {
   "usingComponents": {
-    "van-cell": "../../compentents/cell/index",
-    "van-cell-group": "../../compentents/cell-group/index",
-    "van-toast": "../../compentents/toast/index"
+    "van-cell": "../../compentents/vant/cell/index",
+    "van-cell-group": "../../compentents/vant/cell-group/index",
+    "van-toast": "../../compentents/vant/toast/index"
   }
   
 }
