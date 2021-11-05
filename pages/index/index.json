@@ -1,10 +1,10 @@
 {
   "usingComponents": {
-    "slider": "../../compentents/slider/slider",
-    "van-search": "../../compentents/search/index",
-    "van-grid": "../../compentents/grid/index",
-    "van-grid-item": "../../compentents/grid-item/index",
-    "van-notify": "../../compentents/notify/index"
+    "slider": "../../compentents/vant/slider/slider",
+    "van-search": "../../compentents/vant/search/index",
+    "van-grid": "../../compentents/vant/grid/index",
+    "van-grid-item": "../../compentents/vant/grid-item/index",
+    "van-notify": "../../compentents/vant/notify/index"
   },
   "navigationBarBackgroundColor": "#000",
   "navigationBarTitleText": "首页",
