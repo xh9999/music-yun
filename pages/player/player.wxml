@@ -29,7 +29,7 @@
             </swiper-item>
         </swiper>
         <view class="dots-wrapper">
-            <view class="dots {{currentDot==index?'current':''}}" wx:for="{{dotsArray}}"></view>
+            <view class="dots {{currentDot==index?'current':''}}" wx:for="{{dotsArray}}" wx:key="id"></view>
         </view>
         <view class="bottom">
             <view class="progress-wrapper">
@@ -64,7 +64,7 @@
         <view class="play-content">
             <view class="plyer-list-title">播放队列</view>
             <scroll-view class="playlist-wrapper" scroll-y>
-                <view class="item" bindtap="playthis" wx:for="{{songlist}}" wx:for-item="item" wx:key="{{index}}" data-id="{{item.id}}" data-index="{{index}}">
+                <view class="item" bindtap="playthis" wx:for="{{songlist}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" data-index="{{index}}">
                     <view class="name">{{item.name}}</view>
                     <view class="play_list__line">-</view>
                     <view class="singer">{{item.ar[0].name}}</view>

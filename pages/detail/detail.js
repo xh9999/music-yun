@@ -22,8 +22,6 @@ Page({
       id: options.id,
       tag: options.tag
     });
-    console.log(this.data.tag);
-    console.log(this.data.id);
     this.getList();
   },
 

@@ -87,6 +87,7 @@ Page({
       songlist: result.playlist.tracks
     });
     app.globalData.songlist = result.playlist.tracks;
+    console.log(app.globalData.songlist);
   },
   // 两个小圆点
   changeDot: function (e) {
@@ -255,7 +256,6 @@ Page({
   next: function () {
     const songsList = app.globalData.songlist;
     var nextId = songsList[++app.globalData.index];
-    // console.log(this.data.playMod);
     if (this.data.playMod === 1) {
       // 判断如果是最后一首则从第一首开始播放
       if (app.globalData.index === songsList.length) {
