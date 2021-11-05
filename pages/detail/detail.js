@@ -3,7 +3,7 @@ const {
   personal
 } = require('../../utils/request');
 const app = getApp();
-import Toast from "../../compentents/vant/toast/toast";
+import Toast from "../../components/vant/toast/toast";
 Page({
   data: {
     id: null,

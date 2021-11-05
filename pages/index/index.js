@@ -1,4 +1,4 @@
-import Notify from '../../compentents/vant/notify/notify';
+import Notify from '../../components/vant/notify/notify';
 const app = getApp()
 const {
   requesturl,

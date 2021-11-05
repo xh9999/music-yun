@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "van-field": "../../compentents/vant/field/index",
-    "van-notify": "../../compentents/vant/notify/index"
+    "van-field": "../../components/vant/field/index",
+    "van-notify": "../../components/vant/notify/index"
   }
 }

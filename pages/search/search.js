@@ -1,4 +1,4 @@
-import Toast from '../../compentents/vant/toast/toast';
+import Toast from '../../components/vant/toast/toast';
 import {
   getSongsTimeFen,
   getSongsTimeMiao,
