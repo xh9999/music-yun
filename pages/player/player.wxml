@@ -1,0 +1,77 @@
+<view class="player">
+    <view class="normal-player">
+        <view class="background">
+            <image src="{{song.al.picUrl}}" style="width:100%" />
+        </view>
+        <view class="top">
+            <view class="title">{{song.name}}</view>
+            <view class="subtitle">{{song.ar[0].name}}</view>
+        </view>
+        <swiper class="middle" style="height:700rpx" bindchange="changeDot">
+            <swiper-item class="middle-l" style="overflow:visible">
+                <view class="cd-wrapper" ref="cdWrapper">
+                    <view class="cd {{isPlay ? 'play' : ''}}">
+                        <image src="{{song.al.picUrl}}" class="image {{isPlay ? 'play' : ''}}" />
+                    </view>
+                </view>
+            </swiper-item>
+            <swiper-item class="middle-r">
+                <scroll-view class="lyric-wrapper" scroll-y scroll-into-view="" scroll-with-animation scroll-top="{{marginTop}}">
+                    <view wx:if="{{currentLyric}}">
+                        <view class="text" wx:for="{{showLyric}}" wx:for-item="item" wx:key="time">
+                            {{item.text}}
+                        </view>
+                    </view>
+                    <view wx:else="{{!currentLyric}}">
+                        <view class="text current">暂无歌词</view>
+                    </view>
+                </scroll-view>
+            </swiper-item>
+        </swiper>
+        <view class="dots-wrapper">
+            <view class="dots {{currentDot==index?'current':''}}" wx:for="{{dotsArray}}"></view>
+        </view>
+        <view class="bottom">
+            <view class="progress-wrapper">
+                <text class="time time-l">{{currentTime}}</text>
+                <view class="progress-bar-wrapper">
+                    <van-progress percentage="{{percent}}" show-pivot="{{false}}" />
+                </view>
+                <text class="time time-r">{{duration}}</text>
+            </view>
+            <view class="operators">
+                <view class="icon i-left">
+                    <image src="../../assets/tabs/{{playMod==1? 'sequence':''}}{{playMod==2? 'random':''}}{{playMod==3?'singlecycle':''}}.png" bindtap="changeMod" />
+                </view>
+                <view class="icon i-left">
+                    <image class="icon-pre" src="../../assets/tabs/previous.png" bindtap="prev" />
+                </view>
+                <view class="icon i-center">
+                    <image src="../../assets/tabs/stop.png" bindtap="togglePlaying" hidden="{{!isPlay}}" />
+                    <image src="../../assets/tabs/start.png" bindtap="togglePlaying" hidden="{{isPlay}}" />
+                </view>
+                <view class="icon i-right">
+                    <image class="icon-next" src="../../assets/tabs/next.png" bindtap="next" />
+                </view>
+                <view class="icon i-right" bindtap="openList">
+                    <image src="../../assets/tabs/list.png" class="icon-playlist" />
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="content-wrapper {{translateCls}}">
+        <view class="close-list" bindtap="close"></view>
+        <view class="play-content">
+            <view class="plyer-list-title">播放队列</view>
+            <scroll-view class="playlist-wrapper" scroll-y>
+                <view class="item" bindtap="playthis" wx:for="{{songlist}}" wx:for-item="item" wx:key="{{index}}" data-id="{{item.id}}" data-index="{{index}}">
+                    <view class="name">{{item.name}}</view>
+                    <view class="play_list__line">-</view>
+                    <view class="singer">{{item.ar[0].name}}</view>
+                </view>
+            </scroll-view>
+            <view class="close-playlist" bindtap="close">关闭</view>
+        </view>
+    </view>
+</view>
+<van-toast id="van-toast" />

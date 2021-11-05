@@ -1,0 +1,329 @@
+.player .normal-player {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 150;
+    background: #333;
+}
+
+.player .normal-player .background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.6;
+    filter: blur(40rpx);
+}
+
+.player .normal-player .top {
+    margin-bottom: 50rpx;
+}
+
+.player .normal-player .top .title {
+    width: 70%;
+    margin: 0 auto;
+    line-height: 80rpx;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 36rpx;
+    color: #fff;
+}
+
+.player .normal-player .top .subtitle {
+    line-height: 40rpx;
+    text-align: center;
+    font-size: 28rpx;
+    color: #fff;
+}
+
+.player .normal-player .middle {
+    position: fixed;
+    width: 100%;
+    top: 160rpx;
+    bottom: 300rpx;
+    white-space: nowrap;
+    font-size: 0;
+}
+
+.player .normal-player .middle .middle-l {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 100%;
+    height: 0 !important;
+    padding-top: 80% !important;
+}
+
+.player .normal-player .middle .middle-l .cd-wrapper {
+    position: absolute;
+    left: 15%;
+    top: 0;
+    width: 70%;
+    height: 90%;
+}
+
+.player .normal-player .middle .middle-l .cd-wrapper .cd {
+    width: 100%;
+    height: 100%;
+    border: 10rpx solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: rotate 15s linear infinite;
+    animation-play-state: paused;
+}
+
+.player .normal-player .middle .middle-l .cd-wrapper .cd.play {
+    animation: rotate 15s linear infinite;
+    animation-fill-mode: forwards;
+}
+
+.player .normal-player .middle .middle-l .cd-wrapper .cd .image {
+    position: absolute;
+    left: 0rpx;
+    top: 0rpx;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: rotate 15s linear infinite;
+    animation-play-state: paused;
+}
+
+.player .normal-player .middle .middle-l .cd-wrapper .cd .image.play {
+    animation: rotate 15s linear infinite;
+    animation-fill-mode: forwards;
+}
+
+.player .normal-player .middle .middle-r {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.player .normal-player .middle .middle-r .lyric-wrapper {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+    height: 100%;
+}
+
+.player .normal-player .middle .middle-r .lyric-wrapper .text {
+    line-height: 32px;
+    font-size: 14px;
+}
+
+.player .normal-player .middle .middle-r .lyric-wrapper .text.current {
+    color: pink;
+}
+
+.player .normal-player .dots-wrapper {
+    position: absolute;
+    bottom: 210rpx;
+    height: 20rpx;
+    line-height: 20rpx;
+    text-align: center;
+    width: 100%;
+}
+
+.player .normal-player .dots-wrapper .dots {
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 10rpx;
+    background: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    margin: 10rpx;
+    margin-top: 0;
+}
+
+.player .normal-player .dots-wrapper .current {
+    width: 40rpx;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.player .normal-player .bottom {
+    position: absolute;
+    bottom: 50rpx;
+    width: 100%;
+}
+
+.player .normal-player .bottom .progress-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 0rpx auto;
+    padding: 20rpx 0;
+}
+
+.player .normal-player .bottom .progress-wrapper .time {
+    color: #fff;
+    font-size: 24rpx;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 60rpx;
+    flex: 0 0 60rpx;
+    line-height: 60rpx;
+    width: 60rpx;
+}
+
+.player .normal-player .bottom .progress-wrapper .time.time-l {
+    text-align: left;
+}
+
+.player .normal-player .bottom .progress-wrapper .time.time-r {
+    text-align: right;
+}
+
+.player .normal-player .bottom .progress-wrapper .progress-bar-wrapper {
+    flex: 1;
+}
+
+.player .normal-player .bottom .operators {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+}
+
+.player .normal-player .bottom .operators .icon {
+    flex: 1;
+    color: #d632ff;
+}
+
+.player .normal-player .bottom .operators .icon.i-left {
+    text-align: right;
+}
+
+.player .normal-player .bottom .operators .icon.i-center {
+    padding: 0 40rpx;
+    text-align: center;
+}
+
+.player .normal-player .bottom .operators .icon.i-right {
+    text-align: left;
+}
+
+.player .normal-player .bottom .operators .icon image {
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.player .content-wrapper {
+    position: fixed;
+    top: 100%;
+    height: 100%;
+    width: 100%;
+    z-index: 150;
+    transition: all 0.5s;
+}
+
+.player .content-wrapper.uptranslate {
+    transform: translateY(-100%) !important;
+}
+
+.player .content-wrapper.downtranslate {
+    transform: translateY(100%) !important;
+}
+
+.player .content-wrapper .close-list {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.player .content-wrapper .play-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 860rpx;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 200;
+    transition: all 0.5s;
+}
+
+.player .content-wrapper .play-content .plyer-list-title {
+    height: 100rpx;
+    width: 100%;
+    text-align: center;
+    line-height: 100rpx;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 16px;
+    color: #fff;
+}
+
+.player .content-wrapper .play-content .playlist-wrapper {
+    height: 660rpx;
+    width: 100%;
+    padding: 15rpx 30rpx;
+    box-sizing: border-box;
+}
+
+.player .content-wrapper .play-content .playlist-wrapper .item {
+    display: flex;
+    position: relative;
+    height: 90rpx;
+    line-height: 90rpx;
+    margin-left: 30rpx;
+    padding-right: 30rpx;
+    border-bottom: 1rpx dashed rgba(255, 255, 255, 0.3);
+}
+
+.player .content-wrapper .play-content .playlist-wrapper .item .name {
+    max-width: 350rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: #fff;
+}
+
+.player .content-wrapper .play-content .playlist-wrapper .item .play_list__line {
+    display: block;
+    margin: 0 5px;
+    color: #fff;
+}
+
+.player .content-wrapper .play-content .playlist-wrapper .item .singer {
+    max-width: 200rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    color: #fff;
+}
+
+.player .content-wrapper .play-content .playlist-wrapper .item1 {
+    color: #fff;
+    text-align: center;
+    line-height: 100rpx;
+}
+
+.player .content-wrapper .play-content .close-playlist {
+    height: 100rpx;
+    width: 100%;
+    text-align: center;
+    line-height: 100rpx;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 16px;
+    color: #fff;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

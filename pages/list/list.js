@@ -49,7 +49,6 @@ Page({
       this.setData({
         content: result.recommend
       });
-      console.log(result);
       // 推荐电台
     } else if (this.data.type == 'radio') {
       var url = radioUrl;

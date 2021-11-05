@@ -35,6 +35,7 @@ Page({
         res.cookies.forEach((item, index, array) => {
           cookieArr.push(item.split(";")[0]);
         });
+        console.log(res);
         cookieStr = cookieArr.join(";");
         // 当状态码为200说明登录成功
         if (res.data.code == 200) {

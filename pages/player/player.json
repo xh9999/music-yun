@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "van-progress": "../../components/vant/progress/index",
+        "van-toast": "../../components/vant/toast/index"
+    },
+    "navigationBarTitleText": "正在播放",
+    "navigationBarTextStyle": "white"
+}

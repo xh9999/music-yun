@@ -10,6 +10,7 @@
     "pages/login/login",
     "pages/search/search"
   ],
+  "requiredBackgroundModes": ["audio"],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
