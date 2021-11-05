@@ -13,7 +13,6 @@ const app = getApp();
 const {
   http
 } = require("../../utils/search/http");
-
 Page({
   data: {
     motto: 'Hello World',
@@ -21,14 +20,14 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
+    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'),
     musics: [],
     offset: 0,
     keyword: null,
     ev: {},
-    aid: "",
+    aid: "", //音乐id
     prevId: "",
-    bid: ""
+    bid: "" //视频id
   },
   bindViewTap() {
     wx.navigateTo({
@@ -106,7 +105,7 @@ Page({
           });
         });
         var arr = [...this.data.musics, ...musics];
-        var musicArr = arrQc(arr,"id")
+        var musicArr = arrQc(arr, "id")
         this.setData({
           musics: musicArr,
           keyword,
@@ -121,6 +120,8 @@ Page({
   },
   onReachBottom: function () {
     this.onSubimt(this.data.ev);
+    console.log("aid:" + this.data.aid)
+    console.log("bid:" + this.data.bid)
   },
   onPlay(e) {
     var {
@@ -151,7 +152,7 @@ Page({
       })
     };
     this.setData({
-      aid,
+      aid
     });
     console.log(this.data.aid)
   },
@@ -172,5 +173,5 @@ Page({
       bid
     });
     console.log(bid)
-  }
+  },
 })
