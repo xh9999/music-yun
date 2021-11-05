@@ -1,5 +1,11 @@
 const app = getApp();
-import { requestGet, SongDataURL, SongURL, LyricURL, listURL } from "../../utils/request"
+import {
+    requestGet,
+    SongDataURL,
+    SongURL,
+    LyricURL,
+    listURL
+} from "../../utils/request"
 
 const SEQUENCE_MODE = 1 // 顺序播放
 const RANDOM_MOD = 2 //随机播放
@@ -21,8 +27,8 @@ Page({
         dotsArray: new Array(2),
         playMod: SEQUENCE_MODE //播放顺序 默认顺序播放
     },
-    onLoad: function(option) {
-        const audioid = option.id;
+    onLoad: function (option) {
+        const audioid = app.globalData.id;
         if (audioid) {
             this.play(audioid);
             this.getSongData(audioid);
@@ -30,7 +36,7 @@ Page({
             this.getLyricURL(audioid);
         }
     },
-    play: function(audioid) {
+    play: function (audioid) {
         const audioId = audioid;
         app.globalData.songId = audioId;
         const innerAudioContext = wx.createInnerAudioContext();
@@ -70,7 +76,7 @@ Page({
         app.globalData.songlist = result.playlist.tracks;
     },
     // 两个小圆点
-    changeDot: function(e) {
+    changeDot: function (e) {
         this.setData({
             currentDot: e.detail.current
         })
@@ -120,7 +126,9 @@ Page({
     // 播放和暂停
     togglePlaying() {
         const bgAudioManage = app.globalData.bgAudioManage;
-        const { isPlay } = this.data;
+        const {
+            isPlay
+        } = this.data;
         if (isPlay) {
             bgAudioManage.pause();
         } else {
@@ -131,7 +139,7 @@ Page({
         })
     },
     // 处理时间 秒变为分秒
-    _formatTime: function(interval) {
+    _formatTime: function (interval) {
         interval = interval | 0
         const minute = interval / 60 | 0
         const second = this._pad(interval % 60)
@@ -187,7 +195,7 @@ Page({
         }
     },
     // 播放顺序
-    changeMod: function() {
+    changeMod: function () {
         let playMod = this.data.playMod + 1
         if (playMod > SINGLE_CYCLE_MOD) {
             playMod = SEQUENCE_MODE
@@ -197,7 +205,7 @@ Page({
         })
     },
     // 打开播放列表
-    openList: function() {
+    openList: function () {
         // if (!this.data.songlist.length) {
         //     return
         // }
@@ -207,13 +215,13 @@ Page({
         })
     },
     // 关闭播放列表
-    close: function() {
+    close: function () {
         this.setData({
             translateCls: 'downtranslate'
         })
     },
     // 点击播放列表播放
-    playthis: function(e) {
+    playthis: function (e) {
         const id = e.currentTarget.dataset.id;
         const index = e.currentTarget.dataset.index;
         app.globalData.index = index;
@@ -224,7 +232,7 @@ Page({
         // this.getListData(index)
     },
     // 下一首
-    next: function() {
+    next: function () {
         const songsList = app.globalData.songlist;
         var nextId = songsList[++app.globalData.index];
         // console.log(this.data.playMod);
@@ -260,7 +268,7 @@ Page({
 
     },
     // 上一首
-    prev: function() {
+    prev: function () {
         const songsList = app.globalData.songlist;
         var prevId = songsList[--app.globalData.index];
         if (this.data.playMod === 1) {
