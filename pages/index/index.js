@@ -21,6 +21,11 @@ Page({
     this.getSonList();
     this.getStauts();
   },
+  focus(){
+    wx.navigateTo({
+      url: '/pages/search/search',
+    });
+  },
   // 获取登录状态
   getStauts() {
     var stauts = wx.getStorageSync("cookieKey");
@@ -38,7 +43,6 @@ Page({
     wx.removeStorageSync("img");
     wx.removeStorageSync("name");
     this.getStauts();
-    console.log(this.data.iconImg);
     wx.request({
       //请求地址
       url: 'http://121.5.237.135:3000/logout',

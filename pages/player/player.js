@@ -50,7 +50,9 @@ Page({
     console.log(this.data.musicImg);
   },
   onReady: function (e) {
-    this.audioCtx = wx.createAudioContext('myAudio')
+    this.audioCtx = wx.createAudioContext('myAudio');
+    this.audioPlay();
+
   },
   audioPlay: function () {
     this.audioCtx.play()
@@ -68,7 +70,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var id = app.globalData.id;
+    this.setData({
+      id: id
+    });
+    this.getUrl();
+    this.getDetail();
   },
 
   /**
@@ -104,5 +111,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  
 })

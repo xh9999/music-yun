@@ -18,8 +18,8 @@
         <view class="right" wx:else bindtap = "golog">立即登录</view>
     </view>
     <!-- 搜索 -->
-    <view class="search">
-        <van-search value="{{ value }}" placeholder="请输入搜索关键词" />
+    <view class="search" bindtap = "focus">
+        <van-search value="{{ value }}" placeholder="请输入搜索关键词"  disabled="{{true}}"/>
     </view>
     <!-- 轮播图 -->
     <slider banner="{{slider}}"></slider>

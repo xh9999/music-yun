@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "搜索",
+  "usingComponents": {
+    "van-search": "../../compentents/search/index",
+    "van-toast": "../../compentents/toast/index"
+  }
+}

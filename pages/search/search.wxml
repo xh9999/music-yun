@@ -1,0 +1,22 @@
+<van-search value="{{ value }}" focus="{{true}}" shape="round" background="black" placeholder="请输入搜索关键词" bind:search="onSubimt" bind:clear="onCancel" />
+<view class="search-list">
+    <view class="item" wx:for="{{musics}}" wx:key="index" data-aid="{{item.id}}" bindtap="onPlay">
+        <view class="left">
+            <view class="text">
+                <text>{{index+1}}</text>
+            </view>
+            <!-- <image class="bg" src="/assets/tabs/home.png"></image> -->
+            <view class="songs-detail">
+                <text>歌名:{{item.name}}</text>
+                <text>歌手:{{item.author.name}}</text>
+            </view>
+        </view>
+        <view class="right">
+            <view wx:if="{{item.mvid}}" class="mv">
+                <text></text>
+                <image class="mvplay" src="{{item.mvid?'/assets/tabs/mv.png':''}}" data-bid="{{item.mvid}}" catchtap="onGetMvid" />
+            </view>
+        </view>
+    </view>
+</view>
+<van-toast id="van-toast" />
