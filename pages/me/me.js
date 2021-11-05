@@ -1,4 +1,10 @@
 // pages/me/me.js
+const app = getApp();
+const {
+  requesturl,
+  likeList,
+  musicDetail
+} = require('../../utils/request')
 Page({
 
   /**
@@ -7,14 +13,47 @@ Page({
   data: {
 
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    if (wx.getStorageSync("img")) {
+      this.setData({
+        backgroundImg: wx.getStorageSync("img"),
+        name: wx.getStorageSync("name"),
+        useId: wx.getStorageSync("useId")
+      });
+      this.getLike();
+    }
   },
-
+  async getLike() {
+    const result = await requesturl(likeList, {
+      uid: this.data.useId
+    });
+    console.log(result);
+    var songsList = [];
+    var obj = {};
+    var array = result.ids;
+    console.log(array);
+    var that = this
+    // this.getLikeSong(1313591404);
+    array.forEach((item) => {
+      that.getLikeSong(item).then((songs) => {
+        obj.names = songs.songs[0].name,
+          obj.id = songs.songs[0].id,
+          obj.arname = songs.songs[0].ar.name,
+          obj.img = songs.songs[0].al.picUrl,
+          songsList.push(obj);
+        obj = {};
+      });
+    });
+    this.setData({
+      songsList:songsList
+    });
+  },
+  async getLikeSong(id) {
+    const result = await requesturl(musicDetail, {
+      ids: id
+    });
+    return result
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

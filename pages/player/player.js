@@ -37,11 +37,28 @@ Page({
       this.getListData(this.data.listid);
     });
     if (audioid) {
-      this.play(audioid);
-      this.getSongData(audioid);
-      this.getSongURL(audioid);
-      this.getLyricURL(audioid);
+      this._init(audioid);
     }
+  },
+  // 初始化
+  _init: function (id) {
+    this.play(id);
+    this.getSongData(id);
+    this.getSongURL(id);
+    this.getLyricURL(id);
+  },
+  // 进度条拖动
+  sliderChange: function (e) {
+    // 拖动时间
+    const value = e.detail.value / 100 * wx.getBackgroundAudioManager().duration;
+    this.setData({
+      percent: e.detail.value,
+      currentTime: this._formatTime(value),
+      lyricTime: Math.ceil(value)
+    })
+    wx.getBackgroundAudioManager().seek(Math.ceil(value));
+    wx.getBackgroundAudioManager().play()
+
   },
   async gettopList() {
     const result = await requesturl(sonList);
@@ -136,9 +153,9 @@ Page({
         }
         this.getCurrentLyric()
       })
-    }else {
+    } else {
       this.setData({
-        isPlay:false
+        isPlay: false
       });
       Toast.fail('该歌曲需付费');
     }
@@ -246,10 +263,7 @@ Page({
     const id = e.currentTarget.dataset.id;
     const index = e.currentTarget.dataset.index;
     app.globalData.index = index;
-    this.play(id);
-    this.getSongData(id);
-    this.getSongURL(id);
-    this.getLyricURL(id);
+    this._init(id);
     // this.getListData(index)
   },
   // 下一首
@@ -261,29 +275,17 @@ Page({
       if (app.globalData.index === songsList.length) {
         app.globalData.index = -1;
         nextId = songsList[++app.globalData.index];
-        this.play(nextId.id);
-        this.getSongData(nextId.id);
-        this.getSongURL(nextId.id);
-        this.getLyricURL(nextId.id);
+        this._init(nextId.id);
       } else {
-        this.play(nextId.id);
-        this.getSongData(nextId.id);
-        this.getSongURL(nextId.id);
-        this.getLyricURL(nextId.id);
+        this._init(nextId.id);
       }
     } else if (this.data.playMod === 2) {
       app.globalData.index = Math.ceil(Math.random() * songsList.length);
       nextId = songsList[++app.globalData.index];
-      this.play(nextId.id);
-      this.getSongData(nextId.id);
-      this.getSongURL(nextId.id);
-      this.getLyricURL(nextId.id);
+      this._init(nextId.id);
     } else if (this.data.playMod === 3) {
       nextId = songsList[app.globalData.index];
-      this.play(nextId.id);
-      this.getSongData(nextId.id);
-      this.getSongURL(nextId.id);
-      this.getLyricURL(nextId.id);
+      this._init(nextId.id);
     }
 
   },
@@ -296,29 +298,17 @@ Page({
       if (app.globalData.index === -1) {
         app.globalData.index = songsList.length;
         prevId = songsList[--app.globalData.index];
-        this.play(prevId.id);
-        this.getSongData(prevId.id);
-        this.getSongURL(prevId.id);
-        this.getLyricURL(prevId.id);
+        this._init(prevId.id);
       } else {
-        this.play(prevId.id);
-        this.getSongData(prevId.id);
-        this.getSongURL(prevId.id);
-        this.getLyricURL(prevId.id);
+        this._init(prevId.id);
       }
     } else if (this.data.playMod === 2) {
       app.globalData.index = Math.ceil(Math.random() * songsList.length);
       prevId = songsList[--app.globalData.index];
-      this.play(prevId.id);
-      this.getSongData(prevId.id);
-      this.getSongURL(prevId.id);
-      this.getLyricURL(prevId.id);
+      this._init(prevId.id);
     } else if (this.data.playMod === 3) {
       prevId = songsList[app.globalData.index];
-      this.play(prevId.id);
-      this.getSongData(prevId.id);
-      this.getSongURL(prevId.id);
-      this.getLyricURL(prevId.id);
+      this._init(prevId.id);
     }
 
 
@@ -326,10 +316,7 @@ Page({
   onShow: function () {
     const audioid = app.globalData.id;
     if (audioid) {
-      this.play(audioid);
-      this.getSongData(audioid);
-      this.getSongURL(audioid);
-      this.getLyricURL(audioid);
+      this._init(audioid);
     }
   },
 })

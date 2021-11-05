@@ -29,6 +29,12 @@
           "pathName": "pages/login/login",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/me/me",
+          "pathName": "pages/me/me",
+          "query": "",
+          "scene": null
         }
       ]
     }

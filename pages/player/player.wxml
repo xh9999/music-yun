@@ -35,7 +35,7 @@
             <view class="progress-wrapper">
                 <text class="time time-l">{{currentTime}}</text>
                 <view class="progress-bar-wrapper">
-                    <van-progress percentage="{{percent}}" show-pivot="{{false}}" />
+                    <slider value="{{percent}}" bindchange="sliderChange" block-size="12" selected-color="#1989fa"/>
                 </view>
                 <text class="time time-r">{{duration}}</text>
             </view>

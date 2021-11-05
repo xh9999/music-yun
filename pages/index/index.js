@@ -42,6 +42,7 @@ Page({
     wx.removeStorageSync("cookieKey");
     wx.removeStorageSync("img");
     wx.removeStorageSync("name");
+    wx.removeStorageSync("useId");
     this.getStauts();
     wx.request({
       //请求地址

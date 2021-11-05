@@ -61,6 +61,8 @@ var musicUrl = "http://121.5.237.135:3000/song/url";
 var musicDetail = "http://121.5.237.135:3000/song/detail"; //传入歌曲的id
 // mv评论
 var mvcomment = "http://121.5.237.135:3000/comment/mv";
+// 喜欢列表
+var likeList="http://121.5.237.135:3000/likelist"
 function requestGet(url, data) {
     return new Promise((reslove, reject) => {
         wx.request({
@@ -121,5 +123,6 @@ module.exports = {
     SongDataURL:SongDataURL,
     SongURL:SongURL,
     LyricURL:LyricURL,
-    listURL:listURL
+    listURL:listURL,
+    likeList:likeList
 }

@@ -1,4 +1,5 @@
 import Notify from '../../components/vant/notify/notify';
+const app = getApp();
 Page({
   data: {
 
@@ -35,16 +36,17 @@ Page({
         res.cookies.forEach((item, index, array) => {
           cookieArr.push(item.split(";")[0]);
         });
-        console.log(res);
         cookieStr = cookieArr.join(";");
         // 当状态码为200说明登录成功
         if (res.data.code == 200) {
           wx.removeStorageSync("cookieKey");
           wx.removeStorageSync("img");
           wx.removeStorageSync("name");
+          wx.removeStorageSync("useId");
           wx.setStorageSync('cookieKey', cookieStr);
           wx.setStorageSync('img', res.data.profile.avatarUrl);
           wx.setStorageSync('name', res.data.profile.nickname);
+          wx.setStorageSync('useId', res.data.profile.userId);
           // 跳转到首页
           Notify({
             type: 'success',
