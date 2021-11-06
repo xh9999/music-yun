@@ -2,12 +2,20 @@
     <view class="title">
         <view class="icon">
             <view class="img">
-                <image  src="{{backgroundImg}}">
-                    
-                </image>
+                <image src="{{backgroundImg}}" wx:if="{{backgroundImg}}"></image>
+                <view wx:else class="login iconfont icon-denglu"></view>
             </view>
             <view class="cot" wx:if="{{backgroundImg}}">{{name}}</view>
             <view class="cot" wx:else>未登录</view>
         </view>
     </view>
+    <van-collapse value="{{ activeNames }}" bind:change="onChange">
+        <van-collapse-item title="我喜欢" name="1">
+            喜欢的音乐
+        </van-collapse-item>
+        <van-collapse-item title="我的收藏" name="2">
+            网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
+        </van-collapse-item>
+        <van-collapse-item title="有赞美业" name="3">线上拓客，随时预约，贴心顺手的开单收银</van-collapse-item>
+    </van-collapse>
 </view>

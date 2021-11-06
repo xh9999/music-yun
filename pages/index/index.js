@@ -43,6 +43,7 @@ Page({
     wx.removeStorageSync("img");
     wx.removeStorageSync("name");
     wx.removeStorageSync("useId");
+    wx.removeStorageSync("likelist");
     this.getStauts();
     wx.request({
       //请求地址
@@ -67,8 +68,6 @@ Page({
     wx.navigateTo({
       url: '/pages/login/login',
     });
-    console.log(this.data.iconImg);
-
   },
   // banner部分
   async getBanner() {

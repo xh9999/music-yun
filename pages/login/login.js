@@ -1,12 +1,15 @@
 import Notify from '../../components/vant/notify/notify';
 const app = getApp();
+const {
+  requesturl,
+  likeList,
+  musicDetail
+} = require('../../utils/request');
 Page({
   data: {
 
   },
-  onLoad: function (options) {
-
-  },
+  onLoad: function (options) {},
   // 手机号码登录
   handle(e) {
     var value = e.detail.value;
@@ -43,10 +46,14 @@ Page({
           wx.removeStorageSync("img");
           wx.removeStorageSync("name");
           wx.removeStorageSync("useId");
+          wx.removeStorageSync("likelist");
           wx.setStorageSync('cookieKey', cookieStr);
           wx.setStorageSync('img', res.data.profile.avatarUrl);
           wx.setStorageSync('name', res.data.profile.nickname);
           wx.setStorageSync('useId', res.data.profile.userId);
+          // that.getLike().then((result) => {
+          //   app.globalData.array = result
+          // });
           // 跳转到首页
           Notify({
             type: 'success',
@@ -77,5 +84,32 @@ Page({
     wx.switchTab({
       url: '/pages/index/index',
     })
+  },
+  async getLike() {
+    const result = await requesturl(likeList, {
+      uid: wx.getStorageSync("useId")
+    });
+    var obj = {};
+    var array = result.ids;
+    var that = this;
+    var songsList=[];
+    array.forEach((item) => {
+      that.getLikeSong(item).then((songs) => {
+        obj.names = songs.songs[0].name;
+        obj.id = songs.songs[0].id;
+        obj.arname = songs.songs[0].ar[0].name;
+        obj.img = songs.songs[0].al.picUrl;
+        songsList[songsList.length] = obj;
+        obj = {};
+      });
+    });
+    return songsList
+  },
+  async getLikeSong(id) {
+    const result = await requesturl(musicDetail, {
+      ids: id
+    });
+
+    return result
   },
 })

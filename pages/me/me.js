@@ -4,49 +4,56 @@ const {
   requesturl,
   likeList,
   musicDetail
-} = require('../../utils/request')
+} = require('../../utils/request');
+var ress = [];
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    activeNames: [],
+    content: []
   },
   onLoad: function (options) {
     if (wx.getStorageSync("img")) {
       this.setData({
         backgroundImg: wx.getStorageSync("img"),
         name: wx.getStorageSync("name"),
-        useId: wx.getStorageSync("useId")
+        useId: wx.getStorageSync("useId"),
+        content: app.globalData.array
       });
-      this.getLike();
     }
+    console.log(wx.getStorageSync("likelist"));
+  },
+  player(event) {
+    var id = event.currentTarget.dataset.id;
+    app.globalData.id = id;
+    // 跳转到跳转tabBar页面不能传递参数
+    wx.switchTab({
+      url: `/pages/player/player`,
+    })
   },
   async getLike() {
     const result = await requesturl(likeList, {
       uid: this.data.useId
     });
-    console.log(result);
     var songsList = [];
     var obj = {};
     var array = result.ids;
-    console.log(array);
     var that = this
     // this.getLikeSong(1313591404);
     array.forEach((item) => {
       that.getLikeSong(item).then((songs) => {
-        obj.names = songs.songs[0].name,
-          obj.id = songs.songs[0].id,
-          obj.arname = songs.songs[0].ar.name,
-          obj.img = songs.songs[0].al.picUrl,
-          songsList.push(obj);
+        obj.names = songs.songs[0].name;
+        obj.id = songs.songs[0].id;
+        obj.arname = songs.songs[0].ar[0].name;
+        obj.img = songs.songs[0].al.picUrl;
+        songsList.push(obj);
         obj = {};
       });
     });
-    this.setData({
-      songsList:songsList
-    });
+    return songsList
   },
   async getLikeSong(id) {
     const result = await requesturl(musicDetail, {
@@ -57,16 +64,19 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
+  onChange(event) {
+    this.setData({
+      activeNames: event.detail,
+    });
+  },
   onReady: function () {
-
+    console.log(this.data.content);
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
