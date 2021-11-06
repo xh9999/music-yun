@@ -104,7 +104,8 @@ var SongURL = "http://121.5.237.135:3000/song/url?id="
 
 var LyricURL = "http://121.5.237.135:3000/lyric?id="
 
-var listURL = "http://121.5.237.135:3000/playlist/detail?id="
+var listURL = "http://121.5.237.135:3000/playlist/detail?id=";
+var singerURL = "http://121.5.237.135:3000/artist/list?"
 module.exports = {
     requesturl: requesturl,
     requestGet:requestGet,
@@ -124,5 +125,6 @@ module.exports = {
     SongURL:SongURL,
     LyricURL:LyricURL,
     listURL:listURL,
-    likeList:likeList
+    likeList:likeList,
+    singerURL:singerURL
 }

@@ -1,0 +1,10 @@
+{
+  "usingComponents":{
+    "van-cell": "../../components/vant/cell/index",
+    "van-cell-group": "../../components/vant/cell-group/index",
+    "van-image": "../../components/vant/image/index"
+  },
+  "navigationBarTitleText": "歌单",
+  "navigationBarBackgroundColor": "#000",
+  "navigationBarTextStyle":"white"
+} 

@@ -1,1 +1,44 @@
-/* pages/concer/concer.wxss */
+.van-grid-item
+{
+    height: 80rpx;
+    text-align:center;
+    line-height:80rpx;
+}
+.van-cell .van-icon{
+    width: 2rem;
+    height:2rem;
+}
+.van-cell .van-icon__image
+{
+    width: 100%;
+    height: 100%;
+}
+.btn
+{
+    width: 10px;
+}
+.box
+{ 
+    background: black;
+}
+.active
+{
+    background: black !important;
+}
+.van-cell
+{
+    background: black !important;
+    color: white;
+}
+.van-grid-item__content
+{
+    background: black !important;
+}
+text 
+{
+    color: white;
+}
+view
+{
+    color: white;
+}

@@ -8,7 +8,8 @@
     "pages/detail/detail",
     "pages/mvplayer/mvplayer",
     "pages/login/login",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/singer/singer"
   ],
   "requiredBackgroundModes": ["audio"],
   "window": {

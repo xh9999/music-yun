@@ -1,0 +1,5 @@
+<view class="box">
+<van-cell-group inset="true" border="{{false}}" > 
+  <van-cell center wx:for="{{songList}}"  wx:key="id"  wx:for-item="item"  title="{{item.name}}" label="{{item.ar[0].name}}" bindtap = "songid"  data-id="{{item.id}}" border="{{false}}"/>
+</van-cell-group>
+</view>

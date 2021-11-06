@@ -104,7 +104,6 @@ Page({
       songlist: result.playlist.tracks
     });
     app.globalData.songlist = result.playlist.tracks;
-    console.log(app.globalData.songlist);
   },
   // 两个小圆点
   changeDot: function (e) {
