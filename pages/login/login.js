@@ -93,7 +93,6 @@ Page({
     var array = result.ids;
     var that = this;
     var songsList=[];
-    console.log(123);
     array.forEach((item) => {
       that.getLikeSong(item).then((songs) => {
         obj.names = songs.songs[0].name;
@@ -104,8 +103,6 @@ Page({
         obj = {};
       });
     });
-    console.log(456);
-    console.log(songsList);
     return songsList
   },
   async getLikeSong(id) {

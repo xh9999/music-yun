@@ -44,6 +44,12 @@ Page({
     if (this.data.type == 'new') {
       var url = newSong;
       const result = await requesturl(url);
+      // 将每日推荐的所有内容传递到播放列表中
+      app.globalData.everyday = result.recommend;
+      app.globalData.topid = null;
+      app.globalData.radio = null;
+      app.globalData.searchSong = null;
+      app.globalData.searchmusics = null;
       // 获取到数据后清除轻提示
       Toast.clear();
       this.setData({
@@ -55,6 +61,14 @@ Page({
       const result = await requesturl(url, {
         limit: this.data.limit
       });
+      const result1 = await requesturl(url, {
+        limit: 25
+      });
+      app.globalData.everyday = null;
+      app.globalData.topid = null;
+      app.globalData.searchSong = null;
+      app.globalData.searchmusics = null;
+      app.globalData.radio = result1;
       // 获取到数据后清除轻提示
       Toast.clear();
       this.setData({
@@ -119,6 +133,10 @@ Page({
     wx.navigateTo({
       url: `/pages/mvplayer/mvplayer?id=${id}`,
     });
+  },
+  onShow: function () {
+    // this.getRecommend();
+    console.log(app.globalData.everyday);
   },
   onReachBottom: function () {
     // 当到底的时候继续加载

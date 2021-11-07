@@ -35,7 +35,7 @@
             <view class="progress-wrapper">
                 <text class="time time-l">{{currentTime}}</text>
                 <view class="progress-bar-wrapper">
-                    <slider value="{{percent}}" bindchange="sliderChange" block-size="12" selected-color="#1989fa"/>
+                    <slider value="{{percent}}" bindchange="sliderChange" block-size="12" selected-color="#1989fa" />
                 </view>
                 <text class="time time-r">{{duration}}</text>
             </view>
@@ -64,10 +64,43 @@
         <view class="play-content">
             <view class="plyer-list-title">播放队列</view>
             <scroll-view class="playlist-wrapper" scroll-y>
-                <view class="item" bindtap="playthis" wx:for="{{songlist}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" data-index="{{index}}">
-                    <view class="name">{{item.name}}</view>
-                    <view class="play_list__line">-</view>
-                    <view class="singer">{{item.ar[0].name}}</view>
+                <view wx:if="{{songlist}}">
+                    <view class="item" bindtap="playthis" wx:for="{{songlist}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" data-index="{{index}}">
+                        <view class="name">{{item.name}}</view>
+                        <view class="play_list__line">-</view>
+                        <view class="singer">{{item.ar[0].name}}</view>
+                    </view>
+                </view>
+                <view wx:elif="{{everyday}}">
+                    <view class="item" bindtap="playthis" wx:for="{{everyday}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" data-index="{{index}}">
+                        <view class="name">{{item.name}}</view>
+                        <view class="play_list__line">-</view>
+                        <view class="singer">{{item.artists[0].name}}</view>
+                    </view>
+                </view>
+                <!-- 推荐电台 -->
+                <view wx:elif="{{radio}}">
+                    <view class="item" bindtap="playthis" wx:for="{{radio}}" wx:for-item="item" wx:key="id" data-id="{{item.mainSong.id}}" data-index="{{index}}">
+                        <view class="name">{{item.name}}</view>
+                        <view class="play_list__line">-</view>
+                        <view class="singer">{{item.reason}}</view>
+                    </view>
+                </view>
+                <!-- 歌手音乐 -->
+                <view wx:elif="{{searchSong}}">
+                    <view class="item" bindtap="playthis" wx:for="{{searchSong}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" data-index="{{index}}">
+                        <view class="name">{{item.name}}</view>
+                        <view class="play_list__line">-</view>
+                        <view class="singer">{{item.ar[0].name}}</view>
+                    </view>
+                </view>
+                <!-- 搜索 -->
+                <view wx:elif="{{searchmusics}}">
+                    <view class="item" bindtap="playthis" wx:for="{{searchmusics}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" data-index="{{index}}">
+                        <view class="name">{{item.name}}</view>
+                        <view class="play_list__line">-</view>
+                        <view class="singer">{{item.author.name}}</view>
+                    </view>
                 </view>
             </scroll-view>
             <view class="close-playlist" bindtap="close">关闭</view>

@@ -13,8 +13,6 @@
       </view>
       <view slot="title" class="content">
         <view class="one">{{item.name}}</view>
-        <!-- <view class="one">{{item.ar[0].name}}</view> -->
-        <view wx:if="{{item.mvid!=0}}" class="bofa iconfont icon-mvbofang" bindtap="clickmv" data-id="{{item.mvid}}"></view>
       </view>
     </van-cell>
   </view>

@@ -59,7 +59,7 @@ Page({
     type:''
   },
   onLoad: function () {
-    this.getSingerData()
+    this.getSingerData();
   },
 
   async getSingerData(area){
@@ -67,7 +67,6 @@ Page({
      this.setData({
       concerList:result.artists
      });
-     console.log(result);
   },
   tabsSelect(e){
     const areaId = e.currentTarget.dataset;

@@ -1,5 +1,6 @@
 // pages/me/me.js
 const app = getApp();
+import Notify from '../../components/vant/notify/notify';
 const {
   requesturl,
   likeList,
@@ -24,9 +25,6 @@ Page({
         content: app.globalData.array
       });
     }
-    // wx.setStorageSync('liskList', app.globalData.array);
-    console.log(app.globalData.array);
-    console.log(wx.getStorageSync("liskList"));
   },
   player(event) {
     var id = event.currentTarget.dataset.id;
@@ -67,9 +65,17 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onChange(event) {
-    this.setData({
-      activeNames: event.detail,
-    });
+    if (app.globalData.array) {
+      this.setData({
+        activeNames: event.detail,
+      });
+    } else {
+      Notify({
+        type: 'primary',
+        message: '请先登录',
+        duration: 1000,
+      });
+    }
   },
   onReady: function () {},
 
@@ -77,12 +83,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      this.setData({
-        backgroundImg: wx.getStorageSync("img"),
-        name: wx.getStorageSync("name"),
-        useId: wx.getStorageSync("useId"),
-        content: app.globalData.array
-      });
+    this.setData({
+      backgroundImg: wx.getStorageSync("img"),
+      name: wx.getStorageSync("name"),
+      useId: wx.getStorageSync("useId"),
+      content: app.globalData.array
+    });
   },
 
   /**

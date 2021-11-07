@@ -35,7 +35,32 @@ Page({
     const audioid = app.globalData.id;
     app.globalData.oldid = app.globalData.id;
     this.gettopList().then(() => {
-      this.getListData(this.data.listid);
+      if (app.globalData.topid) {
+        // console.log(app.globalData.topid);
+        this.getListData(app.globalData.topid);
+        console.log(app.globalData.topid);
+      } else if (app.globalData.everyday) {
+        this.setData({
+          everyday: app.globalData.everyday
+        });
+        console.log(app.globalData.everyday);
+      } else if (app.globalData.radio) {
+        this.setData({
+          radio: app.globalData.radio.programs
+        });
+        console.log(app.globalData.radio.programs);
+      } else if (app.globalData.searchSong) {
+        this.setData({
+          searchSong: app.globalData.searchSong
+        });
+        console.log(app.globalData.searchSong);
+      } else if (app.globalData.searchmusics) {
+        this.setData({
+          searchmusics: app.globalData.searchmusics
+        });
+        console.log(app.globalData.searchmusics);
+      }
+      // this.getListData(this.data.listid);
     });
     if (audioid) {
       this._init(audioid);
@@ -86,7 +111,7 @@ Page({
   },
   // 获取歌曲的url地址
   async getSongURL(id) {
-    const result = await requestGet(SongURL + id)
+    const result = await requestGet(SongURL + id);
     this.setData({
       url: result.data[0]
     });
@@ -166,17 +191,19 @@ Page({
   // 播放和暂停
   togglePlaying() {
     const bgAudioManage = app.globalData.bgAudioManage;
-    const {
-      isPlay
-    } = this.data;
-    if (isPlay) {
-      bgAudioManage.pause();
-    } else {
-      bgAudioManage.play();
+    if (bgAudioManage) {
+      const {
+        isPlay
+      } = this.data;
+      if (isPlay) {
+        bgAudioManage.pause();
+      } else {
+        bgAudioManage.play();
+      }
+      this.setData({
+        isPlay: !isPlay
+      });
     }
-    this.setData({
-      isPlay: !isPlay
-    })
   },
   // 处理时间 秒变为分秒
   _formatTime: function (interval) {
@@ -258,13 +285,16 @@ Page({
   close: function () {
     this.setData({
       translateCls: 'downtranslate'
-    })
+    });
   },
   // 点击播放列表播放
   playthis: function (e) {
     const id = e.currentTarget.dataset.id;
     const index = e.currentTarget.dataset.index;
     app.globalData.index = index;
+    this.setData({
+      translateCls: 'downtranslate'
+    });
     this._init(id);
     // this.getListData(index)
   },
@@ -316,11 +346,63 @@ Page({
 
   },
   onShow: function () {
+    // console.log(app.globalData.searchmusics);
+    // console.log(app.globalData.everyday);
+    // console.log(app.globalData.radio);
     const audioid = app.globalData.id;
     // 原先的id
     const oldid = app.globalData.oldid;
+    if (app.globalData.topid) {
+      this.getListData(app.globalData.topid);
+      console.log("topid");
+    } else if (app.globalData.everyday) {
+      this.setData({
+        everyday: app.globalData.everyday
+      });
+      console.log(this.data.everyday);
+      console.log("everyday");
+    } else if (app.globalData.radio) {
+      this.setData({
+        radio: app.globalData.radio.programs
+      });
+      console.log("radio");
+      console.log(this.data.radio);
+    } else if (app.globalData.searchSong) {
+      this.setData({
+        searchSong: app.globalData.searchSong
+      });
+      console.log(this.data.searchSong);
+      console.log("searchSong");
+    } else if (app.globalData.searchmusics) {
+      this.setData({
+        searchmusics: app.globalData.searchmusics
+      });
+      console.log("searchmusics");
+    }
     if (audioid && oldid != audioid) {
       app.globalData.oldid = app.globalData.id;
+      this.gettopList().then(() => {
+        if (app.globalData.topid) {
+          this.getListData(app.globalData.topid);
+        } else if (app.globalData.everyday) {
+          this.setData({
+            everyday: app.globalData.everyday
+          });
+        } else if (app.globalData.radio) {
+          this.setData({
+            radio: app.globalData.radio.programs
+          });
+        } else if (app.globalData.searchSong) {
+          this.setData({
+            searchSong: app.globalData.searchSong
+          });
+        } else if (app.globalData.searchmusics) {
+          this.setData({
+            searchmusics: app.globalData.searchmusics
+          });
+        }
+        // this.getListData(this.data.listid);
+      });
       this._init(audioid);
     }
   },

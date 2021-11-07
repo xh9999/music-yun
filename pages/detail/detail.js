@@ -22,6 +22,12 @@ Page({
       id: options.id,
       tag: options.tag
     });
+    // 对应的榜单id
+    app.globalData.topid = options.id;
+    app.globalData.everyday = null;
+    app.globalData.radio = null;
+    app.globalData.searchSong = null;
+    app.globalData.searchmusics = null;
     this.getList();
   },
 
@@ -62,7 +68,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    app.globalData.topid = this.data.id;
+    app.globalData.everyday = null;
+    app.globalData.radio = null;
+    app.globalData.searchSong = null;
+    app.globalData.searchmusics = null;
   },
 
   /**

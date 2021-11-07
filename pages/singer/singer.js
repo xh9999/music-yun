@@ -15,7 +15,11 @@ Page({
       success: (res) => {
         this.setData({
           songList: res.data.songs
-        })
+        });
+        app.globalData.topid=null;
+        app.globalData.everyday=null;
+        app.globalData.radio=null;
+        app.globalData.searchSong=res.data.songs
       },
       fail: function (res) {},
       complete: function (res) {},
@@ -23,7 +27,6 @@ Page({
   },
   songid(e) {
     const songId = e.currentTarget.dataset;
-    console.log(songId);
     app.globalData.id = songId.id;
     wx.switchTab({
       url: `/pages/player/player`,
