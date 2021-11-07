@@ -66,7 +66,8 @@ Page({
      const result = await requestGet(singerURL + area+ "&initial=b")
      this.setData({
       concerList:result.artists
-     })
+     });
+     console.log(result);
   },
   tabsSelect(e){
     const areaId = e.currentTarget.dataset;

@@ -24,7 +24,9 @@ Page({
         content: app.globalData.array
       });
     }
-    console.log(wx.getStorageSync("likelist"));
+    // wx.setStorageSync('liskList', app.globalData.array);
+    console.log(app.globalData.array);
+    console.log(wx.getStorageSync("liskList"));
   },
   player(event) {
     var id = event.currentTarget.dataset.id;
@@ -69,14 +71,19 @@ Page({
       activeNames: event.detail,
     });
   },
-  onReady: function () {
-    console.log(this.data.content);
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+      this.setData({
+        backgroundImg: wx.getStorageSync("img"),
+        name: wx.getStorageSync("name"),
+        useId: wx.getStorageSync("useId"),
+        content: app.globalData.array
+      });
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

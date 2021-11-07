@@ -1,0 +1,46 @@
+.box {
+    .contents {
+        .van-cell {
+            background-color: rgb(49, 49, 49);
+            color: #fff;
+            height: 150rpx;
+
+            .van-cell_title {
+                background-color: #222;
+                padding: 8rpx;
+            }
+        }
+
+        .cell {
+            background-color: #000;
+            display: flex;
+
+            .icon {
+                height: 100rpx;
+                width: 100rpx;
+                background-color: #000;
+                margin-right: 40rpx;
+
+                image {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .content {
+                width: 545rpx;
+                position: relative;
+
+                view {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .one {
+                    width: 80%;
+                }
+            }
+        }
+    }
+}

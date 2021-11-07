@@ -46,7 +46,42 @@ page {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.self .van-cell {
+.self .contents .van-cell {
+  background-color: #313131;
+  color: #fff;
+  height: 150rpx;
+}
+.self .contents .van-cell .van-cell_title {
+  background-color: #222;
+  padding: 8rpx;
+}
+.self .contents .cell {
+  background-color: #000;
+  display: flex;
+}
+.self .contents .cell .icon {
+  height: 100rpx;
+  width: 100rpx;
+  background-color: #000;
+  margin-right: 40rpx;
+}
+.self .contents .cell .icon image {
+  width: 100rpx;
+  height: 100rpx;
+}
+.self .contents .cell .content {
+  width: 545rpx;
+  position: relative;
+}
+.self .contents .cell .content view {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.self .contents .cell .content .one {
+  width: 80%;
+}
+.self .van-collapse-item > .van-collapse-item__title .van-cell {
   color: #fff;
   background-color: #000;
   height: 120rpx;
@@ -57,32 +92,8 @@ page {
 .self .van-cell__right-icon-wrap {
   margin-top: 39rpx;
 }
-.self .cell {
+.self .van-collapse-item__content {
   background-color: #000;
-  display: flex;
-}
-.self .cell .icon {
-  height: 100rpx;
-  width: 100rpx;
-}
-.self .cell .icon image {
-  width: 100%;
-  height: 100%;
-}
-.self .cell .content {
-  width: 545rpx;
-  position: relative;
-}
-.self .cell .content view {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.self .cell .content .one {
-  width: 80%;
-  height: 50%;
-  line-height: 51rpx;
-  margin-left: 40rpx;
 }
 @font-face {
   font-family: 'iconfont';

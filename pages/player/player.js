@@ -33,6 +33,7 @@ Page({
   },
   onLoad: function (option) {
     const audioid = app.globalData.id;
+    app.globalData.oldid = app.globalData.id;
     this.gettopList().then(() => {
       this.getListData(this.data.listid);
     });
@@ -95,7 +96,9 @@ Page({
   // 获取歌词
   async getLyricURL(id) {
     const result = await requestGet(LyricURL + id);
-    const showLyric = this.formatLyric(result.lrc.lyric);
+    if (result.lrc) {
+      const showLyric = this.formatLyric(result.lrc.lyric);
+    }
   },
   // 获取歌单
   async getListData(id) {
@@ -314,7 +317,10 @@ Page({
   },
   onShow: function () {
     const audioid = app.globalData.id;
-    if (audioid) {
+    // 原先的id
+    const oldid = app.globalData.oldid;
+    if (audioid && oldid != audioid) {
+      app.globalData.oldid = app.globalData.id;
       this._init(audioid);
     }
   },

@@ -44,6 +44,7 @@ Page({
     wx.removeStorageSync("name");
     wx.removeStorageSync("useId");
     wx.removeStorageSync("likelist");
+    app.globalData.array=null;
     this.getStauts();
     wx.request({
       //请求地址

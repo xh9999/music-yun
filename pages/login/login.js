@@ -51,9 +51,9 @@ Page({
           wx.setStorageSync('img', res.data.profile.avatarUrl);
           wx.setStorageSync('name', res.data.profile.nickname);
           wx.setStorageSync('useId', res.data.profile.userId);
-          // that.getLike().then((result) => {
-          //   app.globalData.array = result
-          // });
+          that.getLike().then((result) => {
+            app.globalData.array = result
+          });
           // 跳转到首页
           Notify({
             type: 'success',
@@ -93,6 +93,7 @@ Page({
     var array = result.ids;
     var that = this;
     var songsList=[];
+    console.log(123);
     array.forEach((item) => {
       that.getLikeSong(item).then((songs) => {
         obj.names = songs.songs[0].name;
@@ -103,6 +104,8 @@ Page({
         obj = {};
       });
     });
+    console.log(456);
+    console.log(songsList);
     return songsList
   },
   async getLikeSong(id) {
