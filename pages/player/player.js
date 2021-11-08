@@ -80,9 +80,9 @@ Page({
           radio: null,
           searchSong: null,
           songlist: null,
-          likeList: app.globalData.array
+          likeList: wx.getStorageSync("content")
         });
-        app.globalData.songlist = app.globalData.array;
+        app.globalData.songlist = wx.getStorageSync("content");
       }
     });
     if (audioid) {
@@ -372,13 +372,13 @@ Page({
         if (prevId.mainSong) {
           this._init(prevId.mainSong.id);
         } else {
-          this._init(nextId.id);
+          this._init(prevId.id);
         }
       } else {
         if (prevId.mainSong) {
           this._init(prevId.mainSong.id);
         } else {
-          this._init(nextId.id);
+          this._init(prevId.id);
         }
       }
     } else if (this.data.playMod === 2) {
@@ -387,14 +387,14 @@ Page({
       if (prevId.mainSong) {
         this._init(prevId.mainSong.id);
       } else {
-        this._init(nextId.id);
+        this._init(prevId.id);
       }
     } else if (this.data.playMod === 3) {
       prevId = songsList[app.globalData.index];
       if (prevId.mainSong) {
         this._init(prevId.mainSong.id);
       } else {
-        this._init(nextId.id);
+        this._init(prevId.id);
       }
     }
 
@@ -453,9 +453,9 @@ Page({
             radio: null,
             searchSong: null,
             songlist: null,
-            likeList: app.globalData.array
+            likeList: wx.getStorageSync("content")
           });
-          app.globalData.songlist = app.globalData.array;
+          app.globalData.songlist = wx.getStorageSync("content");
         }
       });
       this._init(audioid);

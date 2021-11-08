@@ -44,6 +44,7 @@ Page({
     wx.removeStorageSync("name");
     wx.removeStorageSync("useId");
     wx.removeStorageSync("likelist");
+    wx.removeStorageSync("content");
     app.globalData.array=null;
     this.getStauts();
     wx.request({

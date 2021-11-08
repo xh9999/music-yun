@@ -17,19 +17,23 @@ Page({
     content: []
   },
   onLoad: function (options) {
+    if (!wx.getStorageSync("content")) {
+      wx.setStorageSync('content', app.globalData.array);
+    }
+    var result = wx.getStorageSync("content");
     if (wx.getStorageSync("img")) {
       this.setData({
         backgroundImg: wx.getStorageSync("img"),
         name: wx.getStorageSync("name"),
         useId: wx.getStorageSync("useId"),
-        content: app.globalData.array
+        content: result
       });
     }
   },
   player(event) {
     var id = event.currentTarget.dataset.id;
     app.globalData.id = id;
-    app.globalData.like="like";
+    app.globalData.like = "like";
     // 跳转到跳转tabBar页面不能传递参数
     wx.switchTab({
       url: `/pages/player/player`,
@@ -66,7 +70,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onChange(event) {
-    if (app.globalData.array) {
+    if (wx.getStorageSync("content")) {
       this.setData({
         activeNames: event.detail,
       });
@@ -84,19 +88,33 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      backgroundImg: wx.getStorageSync("img"),
-      name: wx.getStorageSync("name"),
-      useId: wx.getStorageSync("useId"),
-      content: app.globalData.array
-    });
+    if (!wx.getStorageSync("content")) {
+      wx.setStorageSync('content', app.globalData.array);
+    }
+    var result = wx.getStorageSync("content");
+    if (wx.getStorageSync("img")) {
+      this.setData({
+        backgroundImg: wx.getStorageSync("img"),
+        name: wx.getStorageSync("name"),
+        useId: wx.getStorageSync("useId"),
+        content: result
+      });
+    }else {
+      this.setData({
+        backgroundImg: null,
+        name: null,
+        content: null
+      });
+    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.setData({
+      activeNames:[]
+    })
   },
 
   /**
