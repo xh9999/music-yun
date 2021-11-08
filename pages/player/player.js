@@ -36,31 +36,54 @@ Page({
     app.globalData.oldid = app.globalData.id;
     this.gettopList().then(() => {
       if (app.globalData.topid) {
-        // console.log(app.globalData.topid);
         this.getListData(app.globalData.topid);
-        console.log(app.globalData.topid);
       } else if (app.globalData.everyday) {
         this.setData({
-          everyday: app.globalData.everyday
+          everyday: app.globalData.everyday,
+          radio: null,
+          searchSong: null,
+          searchmusics: null,
+          songlist: null
         });
-        console.log(app.globalData.everyday);
+        app.globalData.songlist = app.globalData.everyday;
       } else if (app.globalData.radio) {
         this.setData({
-          radio: app.globalData.radio.programs
+          radio: app.globalData.radio.programs,
+          everyday: null,
+          searchSong: null,
+          searchmusics: null,
+          songlist: null
         });
-        console.log(app.globalData.radio.programs);
+        app.globalData.songlist = app.globalData.radio.programs;
       } else if (app.globalData.searchSong) {
         this.setData({
-          searchSong: app.globalData.searchSong
+          searchSong: app.globalData.searchSong,
+          everyday: null,
+          radio: null,
+          searchmusics: null,
+          songlist: null
         });
-        console.log(app.globalData.searchSong);
+        app.globalData.songlist = app.globalData.searchSong;
       } else if (app.globalData.searchmusics) {
         this.setData({
-          searchmusics: app.globalData.searchmusics
+          searchmusics: app.globalData.searchmusics,
+          everyday: null,
+          radio: null,
+          searchSong: null,
+          songlist: null
         });
-        console.log(app.globalData.searchmusics);
+        app.globalData.songlist = app.globalData.searchmusics;
+      } else if (app.globalData.like) {
+        this.setData({
+          searchmusics: null,
+          everyday: null,
+          radio: null,
+          searchSong: null,
+          songlist: null,
+          likeList: app.globalData.array
+        });
+        app.globalData.songlist = app.globalData.array;
       }
-      // this.getListData(this.data.listid);
     });
     if (audioid) {
       this._init(audioid);
@@ -307,17 +330,33 @@ Page({
       if (app.globalData.index === songsList.length) {
         app.globalData.index = -1;
         nextId = songsList[++app.globalData.index];
-        this._init(nextId.id);
+        if (nextId.mainSong) {
+          this._init(nextId.mainSong.id);
+        } else {
+          this._init(nextId.id);
+        }
       } else {
-        this._init(nextId.id);
+        if (nextId.mainSong) {
+          this._init(nextId.mainSong.id);
+        } else {
+          this._init(nextId.id);
+        }
       }
     } else if (this.data.playMod === 2) {
       app.globalData.index = Math.ceil(Math.random() * songsList.length);
       nextId = songsList[++app.globalData.index];
-      this._init(nextId.id);
+      if (nextId.mainSong) {
+        this._init(nextId.mainSong.id);
+      } else {
+        this._init(nextId.id);
+      }
     } else if (this.data.playMod === 3) {
       nextId = songsList[app.globalData.index];
-      this._init(nextId.id);
+      if (nextId.mainSong) {
+        this._init(nextId.mainSong.id);
+      } else {
+        this._init(nextId.id);
+      }
     }
 
   },
@@ -330,55 +369,41 @@ Page({
       if (app.globalData.index === -1) {
         app.globalData.index = songsList.length;
         prevId = songsList[--app.globalData.index];
-        this._init(prevId.id);
+        if (prevId.mainSong) {
+          this._init(prevId.mainSong.id);
+        } else {
+          this._init(nextId.id);
+        }
       } else {
-        this._init(prevId.id);
+        if (prevId.mainSong) {
+          this._init(prevId.mainSong.id);
+        } else {
+          this._init(nextId.id);
+        }
       }
     } else if (this.data.playMod === 2) {
       app.globalData.index = Math.ceil(Math.random() * songsList.length);
       prevId = songsList[--app.globalData.index];
-      this._init(prevId.id);
+      if (prevId.mainSong) {
+        this._init(prevId.mainSong.id);
+      } else {
+        this._init(nextId.id);
+      }
     } else if (this.data.playMod === 3) {
       prevId = songsList[app.globalData.index];
-      this._init(prevId.id);
+      if (prevId.mainSong) {
+        this._init(prevId.mainSong.id);
+      } else {
+        this._init(nextId.id);
+      }
     }
 
 
   },
   onShow: function () {
-    // console.log(app.globalData.searchmusics);
-    // console.log(app.globalData.everyday);
-    // console.log(app.globalData.radio);
     const audioid = app.globalData.id;
     // 原先的id
     const oldid = app.globalData.oldid;
-    if (app.globalData.topid) {
-      this.getListData(app.globalData.topid);
-      console.log("topid");
-    } else if (app.globalData.everyday) {
-      this.setData({
-        everyday: app.globalData.everyday
-      });
-      console.log(this.data.everyday);
-      console.log("everyday");
-    } else if (app.globalData.radio) {
-      this.setData({
-        radio: app.globalData.radio.programs
-      });
-      console.log("radio");
-      console.log(this.data.radio);
-    } else if (app.globalData.searchSong) {
-      this.setData({
-        searchSong: app.globalData.searchSong
-      });
-      console.log(this.data.searchSong);
-      console.log("searchSong");
-    } else if (app.globalData.searchmusics) {
-      this.setData({
-        searchmusics: app.globalData.searchmusics
-      });
-      console.log("searchmusics");
-    }
     if (audioid && oldid != audioid) {
       app.globalData.oldid = app.globalData.id;
       this.gettopList().then(() => {
@@ -386,22 +411,52 @@ Page({
           this.getListData(app.globalData.topid);
         } else if (app.globalData.everyday) {
           this.setData({
-            everyday: app.globalData.everyday
+            everyday: app.globalData.everyday,
+            radio: null,
+            searchSong: null,
+            searchmusics: null,
+            songlist: null
           });
+          app.globalData.songlist = app.globalData.everyday;
         } else if (app.globalData.radio) {
           this.setData({
-            radio: app.globalData.radio.programs
+            radio: app.globalData.radio.programs,
+            everyday: null,
+            searchSong: null,
+            searchmusics: null,
+            songlist: null
           });
+          app.globalData.songlist = app.globalData.radio.programs;
         } else if (app.globalData.searchSong) {
           this.setData({
-            searchSong: app.globalData.searchSong
+            searchSong: app.globalData.searchSong,
+            everyday: null,
+            radio: null,
+            searchmusics: null,
+            songlist: null
           });
+          app.globalData.songlist = app.globalData.searchSong;
         } else if (app.globalData.searchmusics) {
           this.setData({
-            searchmusics: app.globalData.searchmusics
+            searchmusics: app.globalData.searchmusics,
+            everyday: null,
+            radio: null,
+            searchSong: null,
+            songlist: null
           });
+          app.globalData.songlist = app.globalData.searchmusics;
+        } else if (app.globalData.like) {
+          console.log(app.globalData.array);
+          this.setData({
+            searchmusics: null,
+            everyday: null,
+            radio: null,
+            searchSong: null,
+            songlist: null,
+            likeList: app.globalData.array
+          });
+          app.globalData.songlist = app.globalData.array;
         }
-        // this.getListData(this.data.listid);
       });
       this._init(audioid);
     }

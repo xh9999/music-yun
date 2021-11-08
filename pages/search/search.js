@@ -76,11 +76,11 @@ Page({
           keyword,
           ev
         });
-        console.log(app.globalData.everyday);
-        app.globalData.topid=null;
-        app.globalData.everyday=null;
-        app.globalData.radio=null;
-        app.globalData.searchSong=null;
+        app.globalData.everyday = null;
+        app.globalData.topid = null;
+        app.globalData.radio = null;
+        app.globalData.searchSong = null;
+        app.globalData.like=null;
         app.globalData.searchmusics=this.data.musics;
       },
       fail: res => {

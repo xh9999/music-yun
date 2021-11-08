@@ -29,6 +29,7 @@ Page({
   player(event) {
     var id = event.currentTarget.dataset.id;
     app.globalData.id = id;
+    app.globalData.like="like";
     // 跳转到跳转tabBar页面不能传递参数
     wx.switchTab({
       url: `/pages/player/player`,

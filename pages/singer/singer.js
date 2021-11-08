@@ -16,9 +16,11 @@ Page({
         this.setData({
           songList: res.data.songs
         });
-        app.globalData.topid=null;
-        app.globalData.everyday=null;
-        app.globalData.radio=null;
+        app.globalData.everyday = null;
+        app.globalData.topid = null;
+        app.globalData.radio = null;
+        app.globalData.searchmusics = null;
+        app.globalData.like=null;
         app.globalData.searchSong=res.data.songs
       },
       fail: function (res) {},

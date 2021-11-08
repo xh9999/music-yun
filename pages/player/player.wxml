@@ -63,6 +63,7 @@
         <view class="close-list" bindtap="close"></view>
         <view class="play-content">
             <view class="plyer-list-title">播放队列</view>
+            <view>{{index}}</view>
             <scroll-view class="playlist-wrapper" scroll-y>
                 <view wx:if="{{songlist}}">
                     <view class="item" bindtap="playthis" wx:for="{{songlist}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" data-index="{{index}}">
@@ -100,6 +101,14 @@
                         <view class="name">{{item.name}}</view>
                         <view class="play_list__line">-</view>
                         <view class="singer">{{item.author.name}}</view>
+                    </view>
+                </view>
+                <!-- 我喜欢 -->
+                <view wx:elif="{{likeList}}">
+                    <view class="item" bindtap="playthis" wx:for="{{likeList}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" data-index="{{index}}">
+                        <view class="name">{{item.names}}</view>
+                        <view class="play_list__line">-</view>
+                        <view class="singer">{{item.arname}}</view>
                     </view>
                 </view>
             </scroll-view>

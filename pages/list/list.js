@@ -50,6 +50,7 @@ Page({
       app.globalData.radio = null;
       app.globalData.searchSong = null;
       app.globalData.searchmusics = null;
+      app.globalData.like=null;
       // 获取到数据后清除轻提示
       Toast.clear();
       this.setData({
@@ -69,6 +70,7 @@ Page({
       app.globalData.searchSong = null;
       app.globalData.searchmusics = null;
       app.globalData.radio = result1;
+      app.globalData.like=null;
       // 获取到数据后清除轻提示
       Toast.clear();
       this.setData({
@@ -135,8 +137,7 @@ Page({
     });
   },
   onShow: function () {
-    // this.getRecommend();
-    console.log(app.globalData.everyday);
+    this.getRecommend();
   },
   onReachBottom: function () {
     // 当到底的时候继续加载

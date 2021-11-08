@@ -28,6 +28,7 @@ Page({
     app.globalData.radio = null;
     app.globalData.searchSong = null;
     app.globalData.searchmusics = null;
+    app.globalData.like=null;
     this.getList();
   },
 
@@ -73,6 +74,7 @@ Page({
     app.globalData.radio = null;
     app.globalData.searchSong = null;
     app.globalData.searchmusics = null;
+    app.globalData.like=null;
   },
 
   /**
@@ -86,7 +88,12 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    app.globalData.topid = this.data.id;
+    app.globalData.everyday = null;
+    app.globalData.radio = null;
+    app.globalData.searchSong = null;
+    app.globalData.searchmusics = null;
+    app.globalData.like=null;
   },
 
   /**
